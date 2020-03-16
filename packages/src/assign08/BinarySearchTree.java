@@ -31,37 +31,50 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     private boolean insert (BinaryNode<Type> node, Type item)
     {
-//        if (node == null)
-//        {
-//            node = new BinaryNode<Type>(item);
-//            return true;
-//        }
-    	
-//    	if (node.getLeftChild() == null && node.getRightChild() == null)
-//    	{
-//    		
-//    	}
-
         if (item.compareTo(node.getData()) < 0)
         {
         	if (node.getLeftChild() == null)
         	{
-        		
-        	}
-        	else
+                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
+                node.setLeftChild(newNode);
+                return true;
+            }
+            
+        	else if (item.compareTo(node.getLeftChild().getData()) > 0 )
         	{
-            	insert(node.getLeftChild(),item);
-        	}
+                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node,node.getLeftChild(),null);
+
+                node.getLeftChild().setParent(newNode);
+
+                node.setLeftChild(newNode);
+
+                return true;
+            }
+
+            insert(node.getLeftChild(),item);
         }
+
         else if (item.compareTo(node.getData()) > 0)
         {
         	if (node.getRightChild() == null)
         	{
-        		
-        	}
-        	
-        	insert(node.getRightChild(),item);
+                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
+                node.setRightChild(newNode);
+                return true;
+            }
             
+        	else if (item.compareTo(node.getRightChild().getData()) > 0 )
+        	{
+                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node,node.getRightChild(),null);
+
+                node.getRightChild().setParent(newNode);
+
+                node.setRightChild(newNode);
+
+                return true;
+            }
+        	
+        	insert(node.getRightChild(),item);         
         }
     
         return false;
