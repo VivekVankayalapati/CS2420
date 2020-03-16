@@ -2,17 +2,19 @@ package assign08;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type>
 {
 
     BinaryNode<Type> firstNode;
+    int size;
 
     public BinarySearchTree ()
     {
          firstNode = new BinaryNode<Type>(null);
-
+         size = 0;
     }
 
     @Override
@@ -28,7 +30,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         return false;
     }
 
-    private void insert(BinaryNode<Type> node, Type item)
+    private void insert (BinaryNode<Type> node, Type item)
     {
         if (node == null)
         {
@@ -49,29 +51,70 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean addAll (Collection<? extends Type> items)
     {
-        // TODO Auto-generated method stub
-        return false;
+        Iterator<? extends Type> i = items.iterator();
+        
+        while (i.hasNext())
+        {
+        	boolean ifAdded = add(i.next());
+        	
+        	if (!ifAdded)
+        	{
+        		return false;
+        	}
+        }
+        
+        return true;
     }
 
     @Override
     public void clear ()
     {
-        // TODO Auto-generated method stub
-        
+        this.firstNode = null;
+        this.size = 0;
     }
 
     @Override
     public boolean contains (Type item)
     {
-        // TODO Auto-generated method stub
-        return false;
+        return search(this.firstNode, item);
+    }
+    
+    private boolean search (BinaryNode<Type> node, Type item)
+    {
+    	if (item.compareTo(node.getData()) == 0)
+    	{
+    		return true;
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		search(node.getLeftChild(), item);
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		search(node.getRightChild(), item);
+    	}
+    	
+    	return false;
     }
 
     @Override
     public boolean containsAll (Collection<? extends Type> items)
     {
-        // TODO Auto-generated method stub
-        return false;
+    	Iterator<? extends Type> i = items.iterator();
+        
+        while (i.hasNext())
+        {
+        	boolean doesContain = contains(i.next());
+        	
+        	if (!doesContain)
+        	{
+        		return false;
+        	}
+        }
+        
+        return true;
     }
 
     @Override
@@ -83,7 +126,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean isEmpty ()
     {
-        // TODO Auto-generated method stub
+    	if (size == 0)
+    	{
+    		return true;
+    	}
+    	
         return false;
     }
 
@@ -110,8 +157,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public int size ()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.size;
     }
 
     @Override

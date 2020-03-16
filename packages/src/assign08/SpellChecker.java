@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.sun.source.tree.BinaryTree;
+
 /**
  * Represents a "dictionary" of strings using a binary search tree and offers
  * methods for spell-checking documents.
@@ -15,7 +17,7 @@ import java.util.Scanner;
  */
 public class SpellChecker {
 
-	private BinarySearchTree<String> dictionary;
+	private BinaryTree<String> dictionary;
 
 	/**
 	 * Default constructor--creates empty dictionary.
