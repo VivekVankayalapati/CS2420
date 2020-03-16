@@ -20,7 +20,14 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean add (Type item)
     {
-        if(insert(this.firstNode,item))
+        if (this.firstNode.getData() == null)
+        {
+        	this.firstNode.setData(item);
+        	size++;
+        	return true;
+        }
+    	
+    	if (insert(this.firstNode,item))
         {
             size++;
             return true;
@@ -31,13 +38,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     private boolean insert (BinaryNode<Type> node, Type item)
     {
+    	boolean isInserted = false;
+    	
         if (item.compareTo(node.getData()) < 0)
         {
         	if (node.getLeftChild() == null)
         	{
                 BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
                 node.setLeftChild(newNode);
-                return true;
+                isInserted = true;
             }
             
         	else if (item.compareTo(node.getLeftChild().getData()) > 0 )
@@ -48,10 +57,13 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
                 node.setLeftChild(newNode);
 
-                return true;
+                isInserted = true;
             }
 
-            insert(node.getLeftChild(),item);
+        	else
+        	{
+                isInserted = insert(node.getLeftChild(),item);
+        	}
         }
 
         else if (item.compareTo(node.getData()) > 0)
@@ -60,7 +72,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         	{
                 BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
                 node.setRightChild(newNode);
-                return true;
+                isInserted = true;
             }
             
         	else if (item.compareTo(node.getRightChild().getData()) > 0 )
@@ -71,14 +83,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
                 node.setRightChild(newNode);
 
-                return true;
+                isInserted = true;
             }
-        	
-        	insert(node.getRightChild(),item);         
+        	else
+        	{
+            	isInserted = insert(node.getRightChild(),item);
+        	}
         }
     
-        return false;
-
+        return isInserted;
     }
 
     @Override
@@ -186,27 +199,27 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean remove (Type item)
     {
-    	
+    	return true;
     }
     
     private void find (BinaryNode<Type> node, Type item)
     {
-    	if (item.compareTo(node.getData()) == 0)
-    	{
-    		return true;
-    	}
-    	
-    	if (item.compareTo(node.getData()) < 0)
-    	{
-    		find(node.getLeftChild(), item);
-    	}
-    	
-    	if (item.compareTo(node.getData()) < 0)
-    	{
-    		find(node.getRightChild(), item);
-    	}
-    	
-    	return false;
+//    	if (item.compareTo(node.getData()) == 0)
+//    	{
+//    		return true;
+//    	}
+//    	
+//    	if (item.compareTo(node.getData()) < 0)
+//    	{
+//    		find(node.getLeftChild(), item);
+//    	}
+//    	
+//    	if (item.compareTo(node.getData()) < 0)
+//    	{
+//    		find(node.getRightChild(), item);
+//    	}
+//    	
+//    	return false;
     }
 
     @Override
