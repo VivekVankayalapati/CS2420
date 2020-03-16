@@ -65,7 +65,7 @@ public class BinaryNode<Type>
      */
     public BinaryNode<Type> getRightChild ()
     {
-        return rightChild;
+        return this.rightChild; 
     }
 
     /**
@@ -142,30 +142,30 @@ public class BinaryNode<Type>
      *         The height of a tree is the length of the longest path to a leaf node. Consider a tree with a single node
      *         to have a height of zero.
      */
-    public int height ()
-    {
+    // public int height ()
+    // {
 
-        return Math.max(height(this.getLeftChild()), height(this.getRightChild()));
+    //     return Math.max(height(this.getLeftChild()), height(this.getRightChild()));
 
-    }
+    // }
 
-    public int height (BinaryNode<Type> node)
-    {
-        if (this.getLeftChild() == null || this.getRightChild() == null)
-        {
-            return 0;
-        }
-        else
-        {
-            /* compute the depth of each subtree */
-            int lDepth = height(node.getLeftChild());
-            int rDepth = height(node.getRightChild());
+    // public int height (BinaryNode<Type> node)
+    // {
+    //     if (this.getLeftChild() == null || this.getRightChild() == null)
+    //     {
+    //         return 0;
+    //     }
+    //     else
+    //     {
+    //         /* compute the depth of each subtree */
+    //         int lDepth = height(node.getLeftChild());
+    //         int rDepth = height(node.getRightChild());
 
-            /* use the larger one */
-            if (lDepth > rDepth)
-                return (lDepth);
-            else
-                return (rDepth);
-        }
-    }
+    //         /* use the larger one */
+    //         if (lDepth > rDepth)
+    //             return (lDepth);
+    //         else
+    //             return (rDepth);
+    //     }
+    // }
 }

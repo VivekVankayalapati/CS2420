@@ -7,20 +7,43 @@ import java.util.NoSuchElementException;
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type>
 {
 
-    
+    BinaryNode<Type> firstNode;
 
     public BinarySearchTree ()
     {
-        // Add a null binary node, set size to 0, set isEmpty, 
+         firstNode = new BinaryNode<Type>(null);
+
     }
 
     @Override
     public boolean add (Type item)
     {
-        // TODO Auto-generated method stub
+        insert(this.firstNode,item);
         
-        
+        if (contains(item))
+        {
+            return true;
+        }
+
         return false;
+    }
+
+    private void insert(BinaryNode<Type> node, Type item)
+    {
+        if (node == null)
+        {
+            node = new BinaryNode<Type>(item);
+
+        }
+
+        if (item.compareTo(node.getData()) < 0)
+        {
+            insert(node.getLeftChild(),item);
+        }
+        else if (item.compareTo(node.getData()) > 0)
+        {
+            insert(node.getRightChild(),item);
+        }   
     }
 
     @Override
@@ -54,8 +77,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public Type first () throws NoSuchElementException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return firstNode.getLeftmostNode().getData();
     }
 
     @Override
@@ -68,8 +90,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public Type last () throws NoSuchElementException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return firstNode.getRightmostNode().getData();
     }
 
     @Override
