@@ -20,22 +20,21 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean add (Type item)
     {
-        insert(this.firstNode,item);
-        
-        if (contains(item))
+        if(insert(this.firstNode,item))
         {
+            size++;
             return true;
         }
-
+       
         return false;
     }
 
-    private void insert (BinaryNode<Type> node, Type item)
+    private boolean insert (BinaryNode<Type> node, Type item)
     {
         if (node == null)
         {
             node = new BinaryNode<Type>(item);
-
+            return true;
         }
 
         if (item.compareTo(node.getData()) < 0)
@@ -45,7 +44,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         else if (item.compareTo(node.getData()) > 0)
         {
             insert(node.getRightChild(),item);
-        }   
+            
+        }
+    
+        return false;
+
     }
 
     @Override
@@ -120,6 +123,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public Type first () throws NoSuchElementException
     {
+        if (isEmpty())
+        {
+            throw new NoSuchElementException();
+        }
+
         return firstNode.getLeftmostNode().getData();
     }
 
@@ -137,6 +145,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public Type last () throws NoSuchElementException
     {
+        if (isEmpty())
+        {
+            throw new NoSuchElementException();
+        }
+        
         return firstNode.getRightmostNode().getData();
     }
 
