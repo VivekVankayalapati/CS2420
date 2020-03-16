@@ -1,4 +1,4 @@
-package lab09;
+package assign08;
 
 /**
  * Represents a generically-typed binary tree node. Each binary node contains data, a reference to the left child, and a
