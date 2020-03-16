@@ -11,21 +11,24 @@ public class BinaryNode<Type>
 {
 
     private Type data;
+    
+    private BinaryNode<Type> parent;
 
     private BinaryNode<Type> leftChild;
 
     private BinaryNode<Type> rightChild;
 
-    public BinaryNode (Type data, BinaryNode<Type> leftChild, BinaryNode<Type> rightChild)
+    public BinaryNode (Type data, BinaryNode<Type> parent, BinaryNode<Type> leftChild, BinaryNode<Type> rightChild)
     {
         this.data = data;
+        this.parent = parent;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
     }
 
-    public BinaryNode (Type data)
+    public BinaryNode (Type data, BinaryNode<Type> parent)
     {
-        this(data, null, null);
+        this(data, parent, null, null);
     }
 
     /**
@@ -42,6 +45,22 @@ public class BinaryNode<Type>
     public void setData (Type data)
     {
         this.data = data;
+    }
+    
+    /**
+     * @return reference to the parent node
+     */
+    public BinaryNode<Type> getParent ()
+    {
+    	return parent;
+    }
+    
+    /**
+     * @param parent - reference to the parent node to be set
+     */
+    public void setParent (BinaryNode<Type> parent)
+    {
+    	this.parent = parent;
     }
 
     /**

@@ -13,7 +13,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     public BinarySearchTree ()
     {
-         firstNode = new BinaryNode<Type>(null);
+         firstNode = new BinaryNode<Type>(null, null);
          size = 0;
     }
 
@@ -31,19 +31,36 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     private boolean insert (BinaryNode<Type> node, Type item)
     {
-        if (node == null)
-        {
-            node = new BinaryNode<Type>(item);
-            return true;
-        }
+//        if (node == null)
+//        {
+//            node = new BinaryNode<Type>(item);
+//            return true;
+//        }
+    	
+//    	if (node.getLeftChild() == null && node.getRightChild() == null)
+//    	{
+//    		
+//    	}
 
         if (item.compareTo(node.getData()) < 0)
         {
-            insert(node.getLeftChild(),item);
+        	if (node.getLeftChild() == null)
+        	{
+        		
+        	}
+        	else
+        	{
+            	insert(node.getLeftChild(),item);
+        	}
         }
         else if (item.compareTo(node.getData()) > 0)
         {
-            insert(node.getRightChild(),item);
+        	if (node.getRightChild() == null)
+        	{
+        		
+        	}
+        	
+        	insert(node.getRightChild(),item);
             
         }
     
@@ -156,8 +173,27 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean remove (Type item)
     {
-        // TODO Auto-generated method stub
-        return false;
+    	
+    }
+    
+    private void find (BinaryNode<Type> node, Type item)
+    {
+    	if (item.compareTo(node.getData()) == 0)
+    	{
+    		return true;
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		find(node.getLeftChild(), item);
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		find(node.getRightChild(), item);
+    	}
+    	
+    	return false;
     }
 
     @Override
