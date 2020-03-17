@@ -2,7 +2,7 @@ package assign08;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;  //I am having issues with junit
+import org.junit.jupiter.api.Test; 
 
 class BinarySearchTreeTester {
 
