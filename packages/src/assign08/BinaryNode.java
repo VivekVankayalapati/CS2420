@@ -4,7 +4,7 @@ package assign08;
  * Represents a generically-typed binary tree node. Each binary node contains data, a reference to the left child, and a
  * reference to the right child.
  * 
- * @author Erin Parker and ??
+ * @author Erin Parker and Brady Hartog and Vivek Vankayalapati
  * @version March 6, 2020
  */
 public class BinaryNode<Type>
@@ -109,22 +109,6 @@ public class BinaryNode<Type>
         
     }
 
-//    public BinaryNode<Type> getLeftmostNode (BinaryNode<Type> leftNode)
-//    {
-//
-//        if (leftNode == null)
-//        {
-//            return null;
-//        }
-//        if (leftNode.getLeftChild() == null)
-//        {
-//            return leftNode;
-//        }
-//
-//        return getRightmostNode(leftNode.getLeftChild());
-//
-//    }
-
     /**
      * @return reference to the rightmost node in the binary tree rooted at this node
      */
@@ -139,52 +123,14 @@ public class BinaryNode<Type>
         return this.getRightChild().getRightmostNode();
     }
 
-//    public BinaryNode<Type> getRightmostNode (BinaryNode<Type> rightNode)
-//    {
-//
-//        if (rightNode == null)
-//        {
-//            return null;
-//        }
-//        if (rightNode.getRightChild() == null)
-//        {
-//            return rightNode;
-//        }
-//
-//        return getRightmostNode(rightNode.getRightChild());
-//
-//    }
-
     /**
      * @return the height of the binary tree rooted at this node
      * 
      *         The height of a tree is the length of the longest path to a leaf node. Consider a tree with a single node
      *         to have a height of zero.
      */
-    // public int height ()
+    // public int height ()  //Not sure how this method could be used
     // {
-
-    //     return Math.max(height(this.getLeftChild()), height(this.getRightChild()));
-
-    // }
-
-    // public int height (BinaryNode<Type> node)
-    // {
-    //     if (this.getLeftChild() == null || this.getRightChild() == null)
-    //     {
-    //         return 0;
-    //     }
-    //     else
-    //     {
-    //         /* compute the depth of each subtree */
-    //         int lDepth = height(node.getLeftChild());
-    //         int rDepth = height(node.getRightChild());
-
-    //         /* use the larger one */
-    //         if (lDepth > rDepth)
-    //             return (lDepth);
-    //         else
-    //             return (rDepth);
-    //     }
+    //     return 0;
     // }
 }

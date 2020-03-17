@@ -5,14 +5,25 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * A Generic Binary Tree
+ * @author Brady Hartog and Vivek Vankayalapati
+ */
 public class BinarySearchTree<Type extends Comparable<? super Type>> implements SortedSet<Type>
 {
 
+    /**The root node */
     BinaryNode<Type> firstNode;
+
+    /**The number of items in the BinarySearchTree */
     int size;
 
+    /**
+     * Constructs a Binary Search Tree. Defined by a root node with no parent and its progeny
+     */
     public BinarySearchTree ()
     {
+        //A null root node
          firstNode = new BinaryNode<Type>(null, null);
          size = 0;
     }
@@ -20,13 +31,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean add (Type item)
     {
+        //Generates the root node
         if (this.firstNode.getData() == null)
         {
         	this.firstNode.setData(item);
         	size++;
         	return true;
         }
-    	
+        
+        //Run if insertion was successful
     	if (insert(this.firstNode,item))
         {
             size++;
@@ -35,7 +48,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
        
         return false;
     }
-
+    
+    /**
+     * Helper method for add. Performs the insertion
+     * @param node
+     * @param item
+     */
     private boolean insert (BinaryNode<Type> node, Type item)
     {
     	boolean isInserted = false;
@@ -95,27 +113,40 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     }
 
     @Override
-    public boolean addAll (Collection<? extends Type> items)
+    public boolean addAll (Collection<? extends Type> items) //I am changing it, it only needs to work once (like if you have a bunch of duplicated)
     {
         Iterator<? extends Type> i = items.iterator();
-        
+
+        int successCounter = 0;
+
         while (i.hasNext())
         {
         	boolean ifAdded = add(i.next());
         	
-        	if (!ifAdded)
-        	{
-        		return false;
-        	}
-        }
+            if (ifAdded)
+            {
+                successCounter++;
+            }
         
-        return true;
+        }
+
+        if(successCounter>0)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
     public void clear ()
     {
-        this.firstNode = null;
+        // this.firstNode = null;   //This is different from how it was constructed
+
+        this.firstNode.setData(null);
+        this.firstNode.setLeftChild(null);
+        this.firstNode.setRightChild(null);
+
         this.size = 0;
     }
 
@@ -202,6 +233,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	return true;
     }
     
+    /**
+     * Helper method for remove. Performs the removal.
+     * @param node
+     * @param item
+     */
     private void find (BinaryNode<Type> node, Type item)
     {
 //    	if (item.compareTo(node.getData()) == 0)
@@ -225,7 +261,26 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean removeAll (Collection<? extends Type> items)
     {
-        // TODO Auto-generated method stub
+        Iterator<? extends Type> i = items.iterator();
+
+        int removeCounter = 0;
+
+        while (i.hasNext())
+        {
+        	boolean ifRemoved = remove(i.next());
+        	
+            if (ifRemoved)
+            {
+                removeCounter++;
+            }
+        
+        }
+
+        if(removeCounter>0)
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -238,7 +293,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public ArrayList<Type> toArrayList ()
     {
-        // TODO Auto-generated method stub
+        // This requires an in order traversal, wherein you populate an array as you traverse. I think Dr. Parker has written code for this
         return null;
     }
 

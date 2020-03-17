@@ -6,18 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.sun.source.tree.BinaryTree;
+//import com.sun.source.tree.BinaryTree; 
 
 /**
  * Represents a "dictionary" of strings using a binary search tree and offers
  * methods for spell-checking documents.
  * 
- * @author Erin Parker and ??
+ * @author Erin Parker and Brady Hartog and Vivek Vankayalapati
  * @version March 6, 2020
  */
 public class SpellChecker {
 
-	private BinaryTree<String> dictionary;
+	// private BinaryTree<String> dictionary;  //Why is this a BinaryTree? BinarySearchTree only inherits SortedSet //Check original file
+	private BinarySearchTree<String> dictionary;
 
 	/**
 	 * Default constructor--creates empty dictionary.
@@ -28,7 +29,6 @@ public class SpellChecker {
 
 	/**
 	 * Creates dictionary from a list of words.
-	 * 
 	 * @param words - the List of Strings used to build the dictionary
 	 */
 	public SpellChecker(List<String> words) {
@@ -38,7 +38,6 @@ public class SpellChecker {
 
 	/**
 	 * Creates dictionary from a file.
-	 * 
 	 * @param dictionaryFile - the File that contains Strings used to build the
 	 *                        dictionary
 	 */
@@ -53,7 +52,7 @@ public class SpellChecker {
 	 * @param word - the String to be added to the dictionary
 	 */
 	public void addToDictionary(String word) {
-		// FILL IN
+		dictionary.add(word);
 	}
 
 	/**
@@ -62,7 +61,7 @@ public class SpellChecker {
 	 * @param word - the String to be removed from the dictionary
 	 */
 	public void removeFromDictionary(String word) {
-		// FILL IN
+		dictionary.remove(word);
 	}
 
 	/**
@@ -76,9 +75,19 @@ public class SpellChecker {
 
 		List<String> wordsToCheck = readFromFile(documentFile);
 
-		// FILL IN -- do not return null
+		List<String> misspelledWords = new ArrayList<String>();  //Should I keep parallel with wordsToCheck?
 
-		return null;
+		
+
+		for (String word: wordsToCheck)
+		{
+			if (!dictionary.contains(word))
+			{
+				misspelledWords.add(word);
+			}
+		}
+
+		return misspelledWords;
 	}
 
 	/**
@@ -87,7 +96,11 @@ public class SpellChecker {
 	 * @param words - the List of Strings to be added to the dictionary
 	 */
 	private void buildDictionary(List<String> words) {
-		// FILL IN
+		
+		for (String word: words)
+		{
+			dictionary.add(word);
+		}
 	}
 
 	/**
