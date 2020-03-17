@@ -61,12 +61,34 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
         if (item.compareTo(node.getData()) < 0)
         {
-
+        	if (node.getLeftChild() == null)
+        	{
+        		BinaryNode<Type> newNode = new BinaryNode<>(item, node);
+        		
+        		node.setLeftChild(newNode);
+        		
+        		isInserted = true;
+        	}
+        	else
+        	{
+        		isInserted = insert(node.getLeftChild(), item);
+        	}
         }
 
         else if (item.compareTo(node.getData()) > 0)
         {
-
+        	if (node.getRightChild() == null)
+        	{
+        		BinaryNode<Type> newNode = new BinaryNode<>(item, node);
+        		
+        		node.setRightChild(newNode);
+        		
+        		isInserted = true;
+        	}
+        	else
+        	{
+        		isInserted = insert(node.getRightChild(), item);
+        	}
         }
     
         return isInserted;
@@ -190,7 +212,16 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean remove (Type item) //Incomplete
     {
-    	return true;
+    	int initialSize = size();
+    	
+    	findAndRemove(rootNode, item);
+    	
+    	if (size() == initialSize - 1)
+    	{
+    		return true;
+    	}
+    	
+    	return false;
     }
     
     /**
@@ -198,24 +229,50 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      * @param node
      * @param item
      */
-    private void find (BinaryNode<Type> node, Type item)
+    private void findAndRemove (BinaryNode<Type> node, Type item)
     {
-//    	if (item.compareTo(node.getData()) == 0)
-//    	{
-//    		return true;
-//    	}
-//    	
-//    	if (item.compareTo(node.getData()) < 0)
-//    	{
-//    		find(node.getLeftChild(), item);
-//    	}
-//    	
-//    	if (item.compareTo(node.getData()) < 0)
-//    	{
-//    		find(node.getRightChild(), item);
-//    	}
-//    	
-//    	return false;
+    	if (item.compareTo(node.getData()) == 0)
+    	{
+    		if (node.getLeftChild() == null && node.getRightChild() == null)
+    		{
+    			node = null;
+    			size--;
+    		}
+    		else if (node.getLeftChild() != null)
+    		{
+    			node.getParent().setLeftChild(node.getLeftChild());
+    			size--;
+    		}
+    		else if (node.getRightChild() != null)
+    		{
+    			node.getParent().setRightChild(node.getRightChild());
+    			size--;
+    		}
+    		else
+    		{
+    			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
+    			
+    			minNode.getParent().setLeftChild(null);
+    			
+    			minNode.setParent(node.getParent());
+    			minNode.setLeftChild(node.getLeftChild());
+    			minNode.setRightChild(node.getRightChild());
+    			
+    			node = minNode;
+    			
+    			size--;
+    		}
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		findAndRemove(node.getLeftChild(), item);
+    	}
+    	
+    	if (item.compareTo(node.getData()) < 0)
+    	{
+    		findAndRemove(node.getRightChild(), item);
+    	}
     }
 
     @Override
