@@ -61,60 +61,19 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
         if (item.compareTo(node.getData()) < 0)
         {
-        	if (node.getLeftChild() == null)
-        	{
-                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
-                node.setLeftChild(newNode);
-                isInserted = true;
-            }
-            
-        	else if (item.compareTo(node.getLeftChild().getData()) > 0 )
-        	{
-                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node,node.getLeftChild(),null);
 
-                node.getLeftChild().setParent(newNode);
-
-                node.setLeftChild(newNode);
-
-                isInserted = true;
-            }
-
-        	else
-        	{
-                isInserted = insert(node.getLeftChild(),item);
-        	}
         }
 
         else if (item.compareTo(node.getData()) > 0)
         {
-        	if (node.getRightChild() == null)
-        	{
-                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node);
-                node.setRightChild(newNode);
-                isInserted = true;
-            }
-            
-        	else if (item.compareTo(node.getRightChild().getData()) > 0 )
-        	{
-                BinaryNode<Type> newNode = new BinaryNode<Type>(item,node,node.getRightChild(),null);
 
-                node.getRightChild().setParent(newNode);
-
-                node.setRightChild(newNode);
-
-                isInserted = true;
-            }
-        	else
-        	{
-            	isInserted = insert(node.getRightChild(),item);
-        	}
         }
     
         return isInserted;
     }
 
     @Override
-    public boolean addAll (Collection<? extends Type> items) //I changed it, it only needs to work once (like if you have a bunch of duplicates)
+    public boolean addAll (Collection<? extends Type> items)
     {
         Iterator<? extends Type> i = items.iterator();
 
@@ -142,11 +101,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public void clear ()
     {
-        // this.rootNode = null;   //This is different from how it was constructed
+        this.rootNode = null;   
 
-        this.rootNode.setData(null);
-        this.rootNode.setLeftChild(null);
-        this.rootNode.setRightChild(null);
+        // this.rootNode.setData(null);
+        // this.rootNode.setLeftChild(null);
+        // this.rootNode.setRightChild(null);
 
         this.size = 0;
     }
