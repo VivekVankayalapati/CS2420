@@ -9,15 +9,25 @@ package assign08;
  */
 public class BinaryNode<Type>
 {
-
+    /**The data */
     private Type data;
-    
+
+    /**The node representing the parent */
     private BinaryNode<Type> parent;
 
+    /**The node representing the left child */
     private BinaryNode<Type> leftChild;
 
+    /**The node representing the right child */
     private BinaryNode<Type> rightChild;
-
+    
+    /**
+     * Creates a BinaryNode, with members representing the data, its parent, and its children
+     * @param data
+     * @param parent
+     * @param leftChild
+     * @param rightChild
+     */
     public BinaryNode (Type data, BinaryNode<Type> parent, BinaryNode<Type> leftChild, BinaryNode<Type> rightChild)
     {
         this.data = data;
@@ -26,9 +36,23 @@ public class BinaryNode<Type>
         this.rightChild = rightChild;
     }
 
+    /**
+     * Constructs a leaf
+     * @param data
+     * @param parent
+     */
     public BinaryNode (Type data, BinaryNode<Type> parent)
     {
         this(data, parent, null, null);
+    }
+
+    /**
+     * Constructs the root node
+     * @param data
+     */
+    public BinaryNode (Type data)
+    {
+        this(data, null, null, null);
     }
 
     /**

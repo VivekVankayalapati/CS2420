@@ -13,7 +13,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 {
 
     /**The root node */
-    BinaryNode<Type> firstNode;
+    BinaryNode<Type> rootNode;
 
     /**The number of items in the BinarySearchTree */
     int size;
@@ -24,7 +24,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     public BinarySearchTree ()
     {
         //A null root node
-         firstNode = new BinaryNode<Type>(null, null);
+         this.rootNode = new BinaryNode<Type>(null);
          size = 0;
     }
 
@@ -32,15 +32,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     public boolean add (Type item)
     {
         //Generates the root node
-        if (this.firstNode.getData() == null)
+        if (this.rootNode.getData() == null)
         {
-        	this.firstNode.setData(item);
+        	this.rootNode.setData(item);
         	size++;
         	return true;
         }
         
         //Run if insertion was successful
-    	if (insert(this.firstNode,item))
+    	if (insert(this.rootNode,item))
         {
             size++;
             return true;
@@ -50,7 +50,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     }
     
     /**
-     * Helper method for add. Performs the insertion
+     * Helper method for add. Performs the insertion. 
+     * Insertion is ordered but misshapen
      * @param node
      * @param item
      */
@@ -113,7 +114,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     }
 
     @Override
-    public boolean addAll (Collection<? extends Type> items) //I am changing it, it only needs to work once (like if you have a bunch of duplicated)
+    public boolean addAll (Collection<? extends Type> items) //I changed it, it only needs to work once (like if you have a bunch of duplicates)
     {
         Iterator<? extends Type> i = items.iterator();
 
@@ -141,11 +142,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public void clear ()
     {
-        // this.firstNode = null;   //This is different from how it was constructed
+        // this.rootNode = null;   //This is different from how it was constructed
 
-        this.firstNode.setData(null);
-        this.firstNode.setLeftChild(null);
-        this.firstNode.setRightChild(null);
+        this.rootNode.setData(null);
+        this.rootNode.setLeftChild(null);
+        this.rootNode.setRightChild(null);
 
         this.size = 0;
     }
@@ -153,7 +154,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean contains (Type item)
     {
-        return search(this.firstNode, item);
+        return search(this.rootNode, item);
     }
     
     private boolean search (BinaryNode<Type> node, Type item)
@@ -202,7 +203,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             throw new NoSuchElementException();
         }
 
-        return firstNode.getLeftmostNode().getData();
+        return this.rootNode.getLeftmostNode().getData();
     }
 
     @Override
@@ -224,11 +225,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             throw new NoSuchElementException();
         }
         
-        return firstNode.getRightmostNode().getData();
+        return this.rootNode.getRightmostNode().getData();
     }
 
     @Override
-    public boolean remove (Type item)
+    public boolean remove (Type item) //Incomplete
     {
     	return true;
     }

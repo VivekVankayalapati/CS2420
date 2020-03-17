@@ -15,15 +15,16 @@ import java.util.Scanner;
  * @author Erin Parker and Brady Hartog and Vivek Vankayalapati
  * @version March 6, 2020
  */
-public class SpellChecker {
+public class SpellChecker 
+{
 
-	// private BinaryTree<String> dictionary;  //Why is this a BinaryTree? BinarySearchTree only inherits SortedSet //Check original file
 	private BinarySearchTree<String> dictionary;
 
 	/**
 	 * Default constructor--creates empty dictionary.
 	 */
-	public SpellChecker() {
+	public SpellChecker() 
+	{
 		dictionary = new BinarySearchTree<String>();
 	}
 
@@ -31,7 +32,8 @@ public class SpellChecker {
 	 * Creates dictionary from a list of words.
 	 * @param words - the List of Strings used to build the dictionary
 	 */
-	public SpellChecker(List<String> words) {
+	public SpellChecker(List<String> words) 
+	{
 		this();
 		buildDictionary(words);
 	}
@@ -41,7 +43,8 @@ public class SpellChecker {
 	 * @param dictionaryFile - the File that contains Strings used to build the
 	 *                        dictionary
 	 */
-	public SpellChecker(File dictionaryFile) {
+	public SpellChecker(File dictionaryFile) 
+	{
 		this();
 		buildDictionary(readFromFile(dictionaryFile));
 	}
@@ -51,7 +54,8 @@ public class SpellChecker {
 	 * 
 	 * @param word - the String to be added to the dictionary
 	 */
-	public void addToDictionary(String word) {
+	public void addToDictionary(String word) 
+	{
 		dictionary.add(word);
 	}
 
@@ -60,7 +64,8 @@ public class SpellChecker {
 	 * 
 	 * @param word - the String to be removed from the dictionary
 	 */
-	public void removeFromDictionary(String word) {
+	public void removeFromDictionary(String word) 
+	{
 		dictionary.remove(word);
 	}
 
@@ -71,11 +76,12 @@ public class SpellChecker {
 	 *                      dictionary
 	 * @return a List of misspelled words
 	 */
-	public List<String> spellCheck(File documentFile) {
+	public List<String> spellCheck(File documentFile) 
+	{
 
 		List<String> wordsToCheck = readFromFile(documentFile);
 
-		List<String> misspelledWords = new ArrayList<String>();  //Should I keep parallel with wordsToCheck?
+		List<String> misspelledWords = new ArrayList<String>();
 
 		
 
@@ -95,7 +101,8 @@ public class SpellChecker {
 	 * 
 	 * @param words - the List of Strings to be added to the dictionary
 	 */
-	private void buildDictionary(List<String> words) {
+	private void buildDictionary(List<String> words) 
+	{
 		
 		for (String word: words)
 		{
@@ -110,10 +117,12 @@ public class SpellChecker {
 	 * @param file - the File to be read
 	 * @return a List of the Strings in the input file
 	 */
-	private List<String> readFromFile(File file) {
+	private List<String> readFromFile(File file) 
+	{
 		ArrayList<String> words = new ArrayList<String>();
 
-		try {
+		try 
+		{
 			/*
 			 * Java's Scanner class is a simple lexer for Strings and primitive types (see
 			 * the Java API, if you are unfamiliar).
@@ -130,7 +139,8 @@ public class SpellChecker {
 			 */
 			fileInput.useDelimiter("\\s*[^a-zA-Z]\\s*");
 
-			while (fileInput.hasNext()) {
+			while (fileInput.hasNext()) 
+			{
 				String s = fileInput.next();
 				if (!s.equals("")) 
 					words.add(s.toLowerCase());
@@ -139,7 +149,8 @@ public class SpellChecker {
 			fileInput.close();
 
 		} 
-		catch(FileNotFoundException e) {
+		catch(FileNotFoundException e) 
+		{
 			System.err.println("File " + file + " cannot be found.");
 		}
 
