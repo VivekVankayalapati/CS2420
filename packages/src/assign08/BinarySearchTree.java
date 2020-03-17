@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+
+
 /**
  * A Generic Binary Tree
  * @author Brady Hartog and Vivek Vankayalapati
@@ -324,10 +326,27 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public ArrayList<Type> toArrayList ()
     {
-        // This requires an in order traversal, wherein you populate an array as you traverse. I think Dr. Parker has written code for this
+        ArrayList<Type> list = new ArrayList<Type>();
+        
+        listing(this.rootNode,list);
+
+        return list;
     	
-    	
-        return null;
+        
+    }
+
+    public void listing (BinaryNode<Type> node,ArrayList<Type> list)
+    {
+        //do a recursive traversal of the subtree on the right
+        if(node.getLeftChild() != null)
+            listing(node.getLeftChild(),list);
+
+        // "visit" this node
+        list.add(node.getData());
+
+        // do a recursive traversal of the subtree on the right
+        if(node.getRightChild() != null)
+            listing(node.getRightChild(),list);
     }
 
 }
