@@ -250,17 +250,17 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
                 delete(node);
                 size--;
     		}
-    		else if (node.getLeftChild() != null)
+    		else if (node.getRightChild() == null)
     		{
     			node.getParent().setLeftChild(node.getLeftChild());
     			size--;
     		}
-    		else if (node.getRightChild() != null)
+    		else if (node.getLeftChild() == null)
     		{
     			node.getParent().setRightChild(node.getRightChild());
     			size--;
     		}
-    		else //problem
+    		else
     		{
     			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
     			
@@ -270,7 +270,9 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     			minNode.setLeftChild(node.getLeftChild());
     			minNode.setRightChild(node.getRightChild());
     			
-    			node = minNode;
+    			node.getParent().setLeftChild(minNode);
+    			node.getLeftChild().setParent(minNode);
+    			node.getRightChild().setParent(minNode);
     			
     			size--;
     		}
@@ -323,6 +325,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     public ArrayList<Type> toArrayList ()
     {
         // This requires an in order traversal, wherein you populate an array as you traverse. I think Dr. Parker has written code for this
+    	
+    	
         return null;
     }
 
