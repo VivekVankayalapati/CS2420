@@ -46,6 +46,12 @@ class BinarySearchTreeTester {
 		tree.add(7);
 		tree.add(15);
 		tree.add(13);
+
+		tree.remove(13); //leaf
+		
+		tree.remove(12); //only child
+
+		tree.remove(5); //two children
 		
 		assertEquals(null, tree);
 	}

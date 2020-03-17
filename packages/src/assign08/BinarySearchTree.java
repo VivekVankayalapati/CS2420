@@ -223,6 +223,18 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
     	return false;
     }
+
+    private void delete(BinaryNode<Type> node)
+    {
+        if (node.getIsLeft())
+        {
+            node.getParent().setLeftChild(null);
+        }
+        else
+        {
+            node.getParent().setRightChild(null);
+        }
+    }
     
     /**
      * Helper method for remove. Performs the removal.
@@ -235,8 +247,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	{
     		if (node.getLeftChild() == null && node.getRightChild() == null)
     		{
-    			node = null;
-    			size--;
+                delete(node);
+                size--;
     		}
     		else if (node.getLeftChild() != null)
     		{
@@ -248,7 +260,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     			node.getParent().setRightChild(node.getRightChild());
     			size--;
     		}
-    		else
+    		else //problem
     		{
     			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
     			
@@ -264,12 +276,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		}
     	}
     	
-    	if (item.compareTo(node.getData()) < 0)
+    	else if (item.compareTo(node.getData()) < 0)
     	{
     		findAndRemove(node.getLeftChild(), item);
     	}
     	
-    	if (item.compareTo(node.getData()) < 0)
+    	else if (item.compareTo(node.getData()) > 0)
     	{
     		findAndRemove(node.getRightChild(), item);
     	}

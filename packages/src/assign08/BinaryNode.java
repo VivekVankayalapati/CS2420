@@ -20,6 +20,8 @@ public class BinaryNode<Type>
 
     /**The node representing the right child */
     private BinaryNode<Type> rightChild;
+
+    private boolean isLeft;
     
     /**
      * Creates a BinaryNode, with members representing the data, its parent, and its children
@@ -34,6 +36,9 @@ public class BinaryNode<Type>
         this.parent = parent;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
+
+
+        
     }
 
     /**
@@ -101,6 +106,12 @@ public class BinaryNode<Type>
     public void setLeftChild (BinaryNode<Type> leftChild)
     {
         this.leftChild = leftChild;
+
+        if (null != this.leftChild)
+        {
+            this.leftChild.isLeft = true;
+        }
+        
     }
 
     /**
@@ -108,7 +119,13 @@ public class BinaryNode<Type>
      */
     public BinaryNode<Type> getRightChild ()
     {
+        
         return this.rightChild; 
+    }
+
+    public boolean getIsLeft()
+    {
+        return this.isLeft;
     }
 
     /**
@@ -116,7 +133,14 @@ public class BinaryNode<Type>
      */
     public void setRightChild (BinaryNode<Type> rightChild)
     {
+        
         this.rightChild = rightChild;
+
+        if (null != this.rightChild)
+        {
+            this.rightChild.isLeft = false;
+        }
+        
     }
 
     /**
