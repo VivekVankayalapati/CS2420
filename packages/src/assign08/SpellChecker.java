@@ -86,8 +86,9 @@ public class SpellChecker
 		
 
 		for (String word: wordsToCheck)
-		{
-			if (!dictionary.contains(word))
+		{	
+			String wordLower = word.toLowerCase();
+			if (!dictionary.contains(wordLower))
 			{
 				misspelledWords.add(word);
 			}
@@ -106,7 +107,7 @@ public class SpellChecker
 		
 		for (String word: words)
 		{
-			dictionary.add(word);
+			dictionary.add(word.toLowerCase());
 		}
 	}
 
