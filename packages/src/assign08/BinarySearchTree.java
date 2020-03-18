@@ -225,7 +225,21 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             return false;
         }
 
-    	findAndRemove(rootNode, item);
+        if (item.compareTo(rootNode.getData()) == 0)
+        {
+        	BinaryNode<Type> minNode = rootNode.getRightChild().getLeftmostNode();
+			Type minNodeData = minNode.getData();
+			
+			remove(minNodeData);
+			
+			rootNode.setData(minNodeData);
+			
+			return true;
+        }
+        else
+        {
+        	findAndRemove(rootNode, item);
+        }
     	
     	if (size() == initialSize - 1)
     	{
@@ -253,7 +267,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      * @param item
      */
     private void findAndRemove (BinaryNode<Type> node, Type item)
-    {
+    {    	
     	if (item.compareTo(node.getData()) == 0)
     	{
     		if (node.getLeftChild() == null && node.getRightChild() == null)
@@ -275,7 +289,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		{
     			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
     			
-    			minNode.getParent().setLeftChild(null);
+    			minNode.getParent().setLeftChild(null); // Always true?
     			
     			minNode.setParent(node.getParent());
     			minNode.setLeftChild(node.getLeftChild());
@@ -337,11 +351,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     {
         ArrayList<Type> list = new ArrayList<Type>();
         
-        listing(this.rootNode,list);
+	    if (size != 0)
+	    {
+	    	listing(this.rootNode,list);
+	    }
 
         return list;
-    	
-        
     }
 
     public void listing (BinaryNode<Type> node,ArrayList<Type> list)

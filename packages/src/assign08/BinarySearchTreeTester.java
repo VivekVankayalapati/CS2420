@@ -77,4 +77,74 @@ class BinarySearchTreeTester {
 		
 		assertFalse(tree.contains(39));
 	}
+	
+	@Test
+	void testClear() {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(10);
+		tree.add(12);
+		tree.add(5);
+		tree.add(4);
+		tree.add(20);
+		tree.add(8);
+		tree.add(7);
+		tree.add(15);
+		tree.add(13);
+		
+		tree.clear();
+		
+		assertEquals(new BinarySearchTree<Integer>(), tree);
+	}
+	
+	@Test
+	void testRemoveRoot() {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(10);
+		tree.add(12);
+		tree.add(5);
+		tree.add(4);
+		tree.add(20);
+		tree.add(8);
+		tree.add(7);
+		tree.add(15);
+		tree.add(13);
+		
+		tree.remove(10);
+		tree.remove(12);
+		
+		assertEquals(null, tree);
+	}
+	
+	@Test
+	void testRemoveAll() {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(10);
+		tree.add(12);
+		tree.add(5);
+		tree.add(4);
+		tree.add(20);
+		tree.add(8);
+		tree.add(7);
+		tree.add(15);
+		tree.add(13);
+		
+		ArrayList<Integer> list = new ArrayList<>();
+		
+//		list.add(10);
+		list.add(12);
+		list.add(5);
+		list.add(4);
+		list.add(20);
+		list.add(8);
+		list.add(7);
+		list.add(15);
+		list.add(13);
+		
+		tree.removeAll(list);
+		
+		assertEquals(new BinarySearchTree<Integer>(), tree);
+	}
 }
