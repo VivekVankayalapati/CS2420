@@ -21,7 +21,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     int size;
 
     /**
-     * Constructs a Binary Search Tree. Defined by a root node with no parent and its progeny
+     * Constructs a Binary Search Tree. Defined by a root node with an inaccesible parent for edge cases and its progeny
      */
     public BinarySearchTree ()
     {
