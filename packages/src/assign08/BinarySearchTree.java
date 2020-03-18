@@ -219,7 +219,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     public boolean remove (Type item) //Incomplete
     {
     	int initialSize = size();
-    	
+        
+        if (initialSize == 0)
+        { 
+            return false;
+        }
+
     	findAndRemove(rootNode, item);
     	
     	if (size() == initialSize - 1)
