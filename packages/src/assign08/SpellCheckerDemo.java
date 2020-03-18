@@ -15,7 +15,7 @@ public class SpellCheckerDemo {
 
 		SpellChecker mySC = new SpellChecker(new File("src/assign08/dictionary.txt"));
 
-		runSpellCheck(mySC, "src/assign08/hello_world.txt");
+		runSpellCheck(mySC, "src/assign08/hello_world_2.txt");
 		runSpellCheck(mySC, "src/assign08/good_luck.txt");
 	}
 

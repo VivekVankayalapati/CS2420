@@ -59,9 +59,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      */
     private boolean insert (BinaryNode<Type> node, Type item)
     {
-    	boolean isInserted = false;
-    	
-        if (item.compareTo(node.getData()) < 0)
+    	if (item.compareTo(node.getData()) < 0)
         {
         	if (node.getLeftChild() == null)
         	{
@@ -69,11 +67,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         		
         		node.setLeftChild(newNode);
         		
-        		isInserted = true;
+        		return true;
         	}
         	else
         	{
-        		isInserted = insert(node.getLeftChild(), item);
+        		return insert(node.getLeftChild(), item);
         	}
         }
 
@@ -85,15 +83,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         		
         		node.setRightChild(newNode);
         		
-        		isInserted = true;
+        		return true;
         	}
         	else
         	{
-        		isInserted = insert(node.getRightChild(), item);
+        		return insert(node.getRightChild(), item);
         	}
         }
     
-        return isInserted;
+        return false;
     }
 
     @Override
@@ -149,12 +147,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
         else if (item.compareTo(node.getData()) < 0)
     	{
-    		search(node.getLeftChild(), item);
+    		return search(node.getLeftChild(), item);
     	}
     	
-    	else if (item.compareTo(node.getData()) < 0)
+    	else if (item.compareTo(node.getData()) > 0)
     	{
-    		search(node.getRightChild(), item);
+    		return search(node.getRightChild(), item);
     	}
     	
     	return false;
