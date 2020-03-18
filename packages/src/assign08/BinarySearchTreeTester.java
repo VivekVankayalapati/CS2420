@@ -75,6 +75,6 @@ class BinarySearchTreeTester {
 		tree.add(15);
 		tree.add(13);
 		
-		assertTrue(tree.contains(13));
+		assertFalse(tree.contains(39));
 	}
 }

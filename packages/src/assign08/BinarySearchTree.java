@@ -140,6 +140,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     
     private boolean search (BinaryNode<Type> node, Type item)
     {
+        if (null == node)
+        {
+            return false;
+        }
+
     	if (item.compareTo(node.getData()) == 0)
     	{
     		return true;
@@ -153,7 +158,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	else if (item.compareTo(node.getData()) > 0)
     	{
     		return search(node.getRightChild(), item);
-    	}
+        }
+        
     	
     	return false;
     }
