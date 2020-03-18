@@ -147,12 +147,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		return true;
     	}
     	
-    	if (item.compareTo(node.getData()) < 0)
+        else if (item.compareTo(node.getData()) < 0)
     	{
     		search(node.getLeftChild(), item);
     	}
     	
-    	if (item.compareTo(node.getData()) < 0)
+    	else if (item.compareTo(node.getData()) < 0)
     	{
     		search(node.getRightChild(), item);
     	}
