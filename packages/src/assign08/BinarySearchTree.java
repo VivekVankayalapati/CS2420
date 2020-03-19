@@ -278,11 +278,13 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		else if (node.getRightChild() == null)
     		{
     			node.getParent().setLeftChild(node.getLeftChild());
+    			node.getLeftChild().setParent(node.getParent());
     			size--;
     		}
     		else if (node.getLeftChild() == null)
     		{
     			node.getParent().setRightChild(node.getRightChild());
+    			node.getRightChild().setParent(node.getParent());
     			size--;
     		}
     		else
