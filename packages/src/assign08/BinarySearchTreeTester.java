@@ -143,7 +143,16 @@ class BinarySearchTreeTester {
 		list.add(15);
 		list.add(13);
 		
-		tree.removeAll(list);
+		tree.remove(12);
+		tree.remove(5);
+		tree.remove(4);
+		tree.remove(20);
+		tree.remove(8);
+		tree.remove(7);
+		tree.remove(15);
+		tree.remove(13);
+
+
 		
 		assertEquals(new BinarySearchTree<Integer>(), tree);
 	}
