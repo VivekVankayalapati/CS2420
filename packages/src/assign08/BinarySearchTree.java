@@ -21,12 +21,13 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     int size;
 
     /**
-     * Constructs a Binary Search Tree. Defined by a root node with no parent and its progeny
+     * Constructs a Binary Search Tree. Defined by a root node with an inaccesible parent for edge cases and its progeny
      */
     public BinarySearchTree ()
     {
         //A null root node
          this.rootNode = new BinaryNode<Type>(null);
+         this.rootNode.setParent(new BinaryNode<Type>(null,null,this.rootNode,null)); //Because everything traverses from the rootNode, a parent is inaccesible excepting removal
          size = 0;
     }
 
@@ -52,8 +53,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     }
     
     /**
-     * Helper method for add. Performs the insertion. 
-     * Insertion is ordered but misshapen
+     * Helper method for add. Performs the insertion.
      * @param node
      * @param item
      */
@@ -225,17 +225,17 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             return false;
         }
 
-        if (item.compareTo(rootNode.getData()) == 0)
-        {
-        	BinaryNode<Type> minNode = rootNode.getRightChild().getLeftmostNode();
-			Type minNodeData = minNode.getData();
+        // if (item.compareTo(rootNode.getData()) == 0)
+        // {
+        // 	BinaryNode<Type> minNode = rootNode.getRightChild().getLeftmostNode();
+		// 	Type minNodeData = minNode.getData();
 			
-			remove(minNodeData);
+		// 	remove(minNodeData);
 			
-			rootNode.setData(minNodeData);
+		// 	rootNode.setData(minNodeData);
 			
-			return true;
-        }
+		// 	return true;
+        // }
         else
         {
         	findAndRemove(rootNode, item);
