@@ -289,17 +289,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		{
     			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
     			
-    			minNode.getParent().setLeftChild(null); // Always true?
-    			
-    			minNode.setParent(node.getParent());
-    			minNode.setLeftChild(node.getLeftChild());
-    			minNode.setRightChild(node.getRightChild());
-    			
-    			node.getParent().setLeftChild(minNode);
-    			node.getLeftChild().setParent(minNode);
-    			node.getRightChild().setParent(minNode);
-    			
-    			size--;
+				Type minNodeData = minNode.getData();
+				
+				remove(minNodeData);
+				
+				node.setData(minNodeData);
     		}
     	}
     	
