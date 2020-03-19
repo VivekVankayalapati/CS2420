@@ -13,7 +13,7 @@ public class BinarySearchTreeTimer
 
         int incr = 1000;
         for (int probSize = 1000; probSize <= 20000; probSize += incr)
-        {   /*
+        {   
 
             //-------------------------------------------------------------------------------------------------------------------//
 
@@ -63,10 +63,11 @@ public class BinarySearchTreeTimer
             System.out.println(probSize + "  " + averageTime);
 
 
-            */
+            
 
             //-------------------------------------------------------------------------------------------------------------------//
             
+            /*
             //This is for timing insertion in random order
 
             
@@ -144,8 +145,9 @@ public class BinarySearchTreeTimer
             // Average it over the number of runs.
             double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
             System.out.println(probSize + "  " + averageTime);
-
+            */
         }
+        
         
         
     }

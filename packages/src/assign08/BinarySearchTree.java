@@ -225,20 +225,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             return false;
         }
 
-        // if (item.compareTo(rootNode.getData()) == 0)
-        // {
-        // 	BinaryNode<Type> minNode = rootNode.getRightChild().getLeftmostNode();
-		// 	Type minNodeData = minNode.getData();
-			
-		// 	remove(minNodeData);
-			
-		// 	rootNode.setData(minNodeData);
-			
-		// 	return true;
-        // }
         else
         {
-        	findAndRemove(rootNode, item);
+            findAndRemove(rootNode, item);
+            
+            //deleteRec(rootNode, item);
         }
     	
     	if (size() == initialSize - 1)
@@ -248,6 +239,39 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
     	return false;
     }
+
+    /* A recursive function to insert a new key in BST */
+    private BinaryNode<Type> deleteRec(BinaryNode<Type> root, Type item) 
+    { 
+        /* Base Case: If the tree is empty */
+        if (root == null)  return root; 
+  
+        /* Otherwise, recur down the tree */
+        if (item.compareTo(root.getData()) < 0 ) 
+            root.setLeftChild(deleteRec(root.getLeftChild(), item)); 
+        else if (item.compareTo(root.getData()) > 0) 
+            root.setRightChild(deleteRec(root.getRightChild(), root.getData())); 
+  
+        // if key is same as root's key, then This is the node 
+        // to be deleted 
+        else
+        { 
+            // node with only one child or no child 
+            if (root.getLeftChild() == null) 
+                return root.getRightChild(); 
+            else if (root.getRightChild() == null) 
+                return root.getLeftChild();
+  
+            // node with two children: Get the inorder successor (smallest 
+            // in the right subtree) 
+            root.setData(root.getRightChild().getLeftmostNode().getData());
+  
+            // Delete the inorder successor 
+            root.setRightChild(deleteRec(root.getRightChild(), item)); 
+        } 
+  
+        return root; 
+    } 
 
     private void delete(BinaryNode<Type> node)
     {
@@ -277,12 +301,36 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		}
     		else if (node.getRightChild() == null)
     		{
-    			node.getParent().setLeftChild(node.getLeftChild());
+                
+
+                    
+
+                node.getLeftChild().setParent(node.getParent());
+
+                if (node.getIsLeft())
+                {
+                    node.getParent().setLeftChild(node.getLeftChild());
+                }
+                else
+                {
+                    node.getParent().setRightChild(node.getLeftChild());
+                }
+               
     			size--;
     		}
     		else if (node.getLeftChild() == null)
     		{
-    			node.getParent().setRightChild(node.getRightChild());
+                
+                node.getRightChild().setParent(node.getParent());
+
+    			if (node.getIsLeft())
+                {
+                    node.getParent().setLeftChild(node.getRightChild());
+                }
+                else
+                {
+                    node.getParent().setRightChild(node.getRightChild());
+                }
     			size--;
     		}
     		else
