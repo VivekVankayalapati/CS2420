@@ -2,6 +2,7 @@ package assign08;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.TreeSet;
 
 
 public class BinarySearchTreeTimer
@@ -12,7 +13,7 @@ public class BinarySearchTreeTimer
         int timesToLoop = 100;
 
         int incr = 1000;
-        for (int probSize = 1000; probSize <= 20000; probSize += incr)
+        for (int probSize = 1000; probSize <= 50000; probSize += incr)
         {   
 
             //-------------------------------------------------------------------------------------------------------------------//
@@ -22,9 +23,11 @@ public class BinarySearchTreeTimer
             
             BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
 
+            TreeSet<Integer> treeSet = new TreeSet<Integer>();
+
             for (int i = 0; i < probSize; i++)
             {
-                binaryInteger.add(i);
+                treeSet.add(i);
             }
 
             long stopTime, midpointTime, startTime = System.nanoTime();
@@ -41,7 +44,7 @@ public class BinarySearchTreeTimer
 
             for (int i = 0; i < probSize; i++)
             {
-                binaryInteger.contains(i);
+                treeSet.contains(i);
             }
 
 
@@ -62,7 +65,7 @@ public class BinarySearchTreeTimer
             double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime));
             System.out.println(probSize + "  " + averageTime);
 
-
+            
             
 
             //-------------------------------------------------------------------------------------------------------------------//

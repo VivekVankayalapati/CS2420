@@ -15,12 +15,12 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 {
 
     /**The root node */
-    BinaryNode<Type> rootNode;
+    private BinaryNode<Type> rootNode;
 
-    BinaryNode<Type> fakeParent;
+    private BinaryNode<Type> fakeParent;
 
     /**The number of items in the BinarySearchTree */
-    int size;
+    private int size;
 
     /**
      * Constructs a Binary Search Tree. Defined by a root node with an inaccesible parent for edge cases and its progeny
@@ -130,45 +130,40 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public void clear ()
     {
-        this.rootNode = null;   
-
-        // this.rootNode.setData(null);
-        // this.rootNode.setLeftChild(null);
-        // this.rootNode.setRightChild(null);
-
+        this.rootNode.setData(null);
+        this.rootNode.setRightChild(null);
+        this.rootNode.setLeftChild(null);
         this.size = 0;
     }
 
     @Override
     public boolean contains (Type item)
     {
-        return search(this.rootNode, item);
+        return contains(this.rootNode, item);
     }
     
-    private boolean search (BinaryNode<Type> node, Type item)
+    private boolean contains (BinaryNode<Type> node, Type item)
     {
-        if (null == node)
+        if (node == null)
         {
             return false;
         }
 
-    	if (item.compareTo(node.getData()) == 0)
+        int compare = item.compareTo(node.getData());
+
+        if (compare < 0)
     	{
-    		return true;
+    		return contains(node.getLeftChild(), item);
     	}
     	
-        else if (item.compareTo(node.getData()) < 0)
+    	else if (compare > 0)
     	{
-    		return search(node.getLeftChild(), item);
-    	}
-    	
-    	else if (item.compareTo(node.getData()) > 0)
-    	{
-    		return search(node.getRightChild(), item);
+    		return contains(node.getRightChild(), item);
         }
-        
-    	
-    	return false;
+        else
+        {
+            return true;
+        } 	
     }
 
     @Override
@@ -203,7 +198,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean isEmpty ()
     {
-    	if (size == 0)
+    	if (this.size == 0)
     	{
     		return true;
     	}
@@ -381,26 +376,20 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
             if (ifRemoved)
             {
                 removeCounter++;
-            }
-        
+            }       
         }
 
-        if(removeCounter>0)
-        {
-            return true;
-        }
-
-        return false;
+        return (removeCounter > 0);
     }
 
     @Override
-    public int size ()
+    public int size ()  //complete
     {
         return this.size;
     }
 
     @Override
-    public ArrayList<Type> toArrayList ()
+    public ArrayList<Type> toArrayList () //complete
     {
         ArrayList<Type> list = new ArrayList<Type>();
         
@@ -412,7 +401,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         return list;
     }
 
-    public void listing (BinaryNode<Type> node,ArrayList<Type> list)
+    private void listing (BinaryNode<Type> node,ArrayList<Type> list)
     {
         //do a recursive traversal of the subtree on the right
         if(node.getLeftChild() != null)
