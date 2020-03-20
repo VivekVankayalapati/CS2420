@@ -290,7 +290,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      * @param node
      * @param item
      */
-    private void findAndRemove (BinaryNode<Type> node, Type item)
+    private void findAndRemove (BinaryNode<Type> node, Type item) // Test comment
     {    	
     	if (item.compareTo(node.getData()) == 0)
     	{
