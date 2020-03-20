@@ -11,6 +11,243 @@ class BinarySearchTreeTester {
 	BinarySearchTree<Integer> tree;
 	
 	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddLessThanRoot() {
+		
+	}
+	
+	@Test
+	void testAddGreaterThanRoot() {
+		
+	}
+	
+	@Test
+	void testAddAllToExisting() {
+		
+	}
+	
+	@Test
+	void testAddAllToBlank() {
+		
+	}
+	
+	@Test
+	void testAddAllFromNothing() {
+		
+	}
+	
+	@Test
+	void testClearFromExisting() {
+		
+	}
+	
+	@Test
+	void testClearBlank() {
+		
+	}
+	
+	@Test
+	void testContainsExisting() {
+		
+	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+//	
+//	@Test
+//	void testAddRoot() {
+//		
+//	}
+	
+	
+	
+	@Test
 	void testAdd1() {
 		tree = new BinarySearchTree<>();
 
