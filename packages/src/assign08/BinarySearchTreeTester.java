@@ -128,31 +128,33 @@ class BinarySearchTreeTester {
 		tree.add(20);
 		tree.add(8);
 		tree.add(7);
+		tree.add(6);
 		tree.add(15);
 		tree.add(13);
 		
 		ArrayList<Integer> list = new ArrayList<>();
 		
-//		list.add(10);
+		list.add(10);
 		list.add(12);
 		list.add(5);
 		list.add(4);
 		list.add(20);
 		list.add(8);
 		list.add(7);
+		list.add(6);
 		list.add(15);
 		list.add(13);
 		
-		tree.remove(12);
-		tree.remove(5);
-		tree.remove(4);
-		tree.remove(20);
 		tree.remove(8);
 		tree.remove(7);
+		tree.remove(10);
+		tree.remove(5);
+		tree.remove(12);
+		tree.remove(20);
 		tree.remove(15);
 		tree.remove(13);
-
-
+		tree.remove(4);
+		tree.remove(6);
 		
 		assertEquals(new BinarySearchTree<Integer>(), tree);
 	}

@@ -301,37 +301,41 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     		}
     		else if (node.getRightChild() == null)
     		{
+                Type leftChildData = node.getLeftChild().getData();
                 
-
-                    
-
+                node.setData(leftChildData);
+                
                 node.getLeftChild().setParent(node.getParent());
-
+                
                 if (node.getIsLeft())
                 {
-                    node.getParent().setLeftChild(node.getLeftChild());
+            		node.getParent().setLeftChild(node.getLeftChild());
                 }
                 else
                 {
-                    node.getParent().setRightChild(node.getLeftChild());
+                	node.getParent().setRightChild(node.getLeftChild());
                 }
-               
-    			size--;
+                
+                size--;
     		}
     		else if (node.getLeftChild() == null)
     		{
+    			Type rightChildData = node.getRightChild().getData();
+                
+                node.setData(rightChildData);
                 
                 node.getRightChild().setParent(node.getParent());
-
-    			if (node.getIsLeft())
+                
+                if (node.getIsLeft())
                 {
-                    node.getParent().setLeftChild(node.getRightChild());
+            		node.getParent().setLeftChild(node.getRightChild());
                 }
                 else
                 {
-                    node.getParent().setRightChild(node.getRightChild());
+                	node.getParent().setRightChild(node.getRightChild());
                 }
-    			size--;
+                
+                size--;
     		}
     		else
     		{
