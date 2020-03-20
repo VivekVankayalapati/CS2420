@@ -13,7 +13,7 @@ public class BinarySearchTreeTimer
         int timesToLoop = 100;
 
         int incr = 1000;
-        for (int probSize = 1000; probSize <= 50000; probSize += incr)
+        for (int probSize = 1000; probSize <= 20000; probSize += incr)
         {   
 
             //-------------------------------------------------------------------------------------------------------------------//
@@ -23,11 +23,11 @@ public class BinarySearchTreeTimer
             
             BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
 
-            TreeSet<Integer> treeSet = new TreeSet<Integer>();
+            //TreeSet<Integer> treeSet = new TreeSet<Integer>();
 
             for (int i = 0; i < probSize; i++)
             {
-                treeSet.add(i);
+                binaryInteger.add(i);
             }
 
             long stopTime, midpointTime, startTime = System.nanoTime();
@@ -44,7 +44,7 @@ public class BinarySearchTreeTimer
 
             for (int i = 0; i < probSize; i++)
             {
-                treeSet.contains(i);
+                binaryInteger.contains(i);
             }
 
 

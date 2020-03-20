@@ -139,33 +139,53 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean contains (Type item)
     {
-        return contains(this.rootNode, item);
+        BinaryNode<Type> node = contains(this.rootNode, item);
+        
+        return (node != null);
     }
     
-    private boolean contains (BinaryNode<Type> node, Type item)
+    // private boolean contains (BinaryNode<Type> node, Type item)
+    // {
+    //     if (node == null)
+    //     {
+    //         return false;
+    //     }
+
+    //     int compare = item.compareTo(node.getData());
+
+    //     if (compare < 0)
+    // 	{
+    // 		return contains(node.getLeftChild(), item);
+    // 	}
+    	
+    // 	else if (compare > 0)
+    // 	{
+    // 		return contains(node.getRightChild(), item);
+    //     }
+    //     else
+    //     {
+    //         return true;
+    //     } 	
+    // }
+
+    private BinaryNode<Type> contains (BinaryNode<Type> node, Type item)
     {
-        if (node == null)
+        int compare = item.compareTo(node.getData());
+        if (node == null || compare == 0)
         {
-            return false;
+            return node;
         }
 
-        int compare = item.compareTo(node.getData());
+        
 
         if (compare < 0)
     	{
     		return contains(node.getLeftChild(), item);
     	}
-    	
-    	else if (compare > 0)
-    	{
-    		return contains(node.getRightChild(), item);
-        }
-        else
-        {
-            return true;
-        } 	
-    }
+ 
+    	return contains(node.getRightChild(), item);
 
+    }
     @Override
     public boolean containsAll (Collection<? extends Type> items)
     {
@@ -230,6 +250,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         else
         {
             findAndRemove(rootNode, item);
+            
+            //deleteRec(rootNode, item);
         }
     	
     	if (size() == initialSize - 1)
@@ -240,20 +262,48 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	return false;
     }
 
-    private void delete(BinaryNode<Type> node, BinaryNode<Type> item)
+    /* A recursive function to insert a new key in BST */
+    private BinaryNode<Type> deleteRec(BinaryNode<Type> root, Type item) 
+    { 
+        /* Base Case: If the tree is empty */
+        if (root == null)  return root; 
+  
+        /* Otherwise, recur down the tree */
+        if (item.compareTo(root.getData()) < 0 ) 
+            root.setLeftChild(deleteRec(root.getLeftChild(), item)); 
+        else if (item.compareTo(root.getData()) > 0) 
+            root.setRightChild(deleteRec(root.getRightChild(), root.getData())); 
+  
+        // if key is same as root's key, then This is the node 
+        // to be deleted 
+        else
+        { 
+            // node with only one child or no child 
+            if (root.getLeftChild() == null) 
+                return root.getRightChild(); 
+            else if (root.getRightChild() == null) 
+                return root.getLeftChild();
+  
+            // node with two children: Get the inorder successor (smallest 
+            // in the right subtree) 
+            root.setData(root.getRightChild().getLeftmostNode().getData());
+  
+            // Delete the inorder successor 
+            root.setRightChild(deleteRec(root.getRightChild(), item)); 
+        } 
+  
+        return root; 
+    } 
+
+    private void delete(BinaryNode<Type> node)
     {
-    	if (node == this.rootNode)
-    	{
-    		node.setData(null);
-    		
-    	}
-    	else if (node.getIsLeft())
+        if (node.getIsLeft())
         {
-            node.getParent().setLeftChild(item);
+            node.getParent().setLeftChild(null);
         }
         else
         {
-            node.getParent().setRightChild(item);
+            node.getParent().setRightChild(null);
         }
     }
     
@@ -268,41 +318,45 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	{
     		if (node.getLeftChild() == null && node.getRightChild() == null)
     		{
-                delete(node, null);
+                delete(node);
                 size--;
     		}
     		else if (node.getRightChild() == null)
     		{
-    			if (node == this.rootNode)
-    			{
-    				this.rootNode = this.rootNode.getLeftChild();
-    				this.rootNode.setParent(fakeParent);
-    				fakeParent.setLeftChild(this.rootNode);
-    			}
-    			else
-    			{
-        			node.getLeftChild().setParent(node.getParent());
-                    
-                    delete(node, node.getLeftChild());
-    			}
-    			
+                Type leftChildData = node.getLeftChild().getData();
+                
+                node.setData(leftChildData);
+                
+                node.getLeftChild().setParent(node.getParent());
+                
+                if (node.getIsLeft())
+                {
+            		node.getParent().setLeftChild(node.getLeftChild());
+                }
+                else
+                {
+                	node.getParent().setRightChild(node.getLeftChild());
+                }
+                
                 size--;
     		}
     		else if (node.getLeftChild() == null)
     		{
-    			if (node == this.rootNode)
-    			{
-    				this.rootNode = this.rootNode.getRightChild();
-    				this.rootNode.setParent(fakeParent);
-    				fakeParent.setLeftChild(this.rootNode);
-    			}
-    			else
-    			{
-    				node.getRightChild().setParent(node.getParent());
-                    
-                    delete(node, node.getRightChild());
-    			}
-    			
+    			Type rightChildData = node.getRightChild().getData();
+                
+                node.setData(rightChildData);
+                
+                node.getRightChild().setParent(node.getParent());
+                
+                if (node.getIsLeft())
+                {
+            		node.getParent().setLeftChild(node.getRightChild());
+                }
+                else
+                {
+                	node.getParent().setRightChild(node.getRightChild());
+                }
+                
                 size--;
     		}
     		else

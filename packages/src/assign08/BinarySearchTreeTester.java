@@ -314,6 +314,33 @@ class BinarySearchTreeTester {
 		
 		assertFalse(tree.contains(39));
 	}
+
+	@Test
+	void testContainsSequential() {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(1);
+		tree.add(2);
+		tree.add(3);
+		tree.add(4);
+		tree.add(5);
+		tree.add(6);
+		tree.add(7);
+		tree.add(8);
+		tree.add(9);
+		
+		assertTrue(tree.contains(1));
+		assertTrue(tree.contains(2));
+		assertTrue(tree.contains(3));
+		assertTrue(tree.contains(4));
+		assertTrue(tree.contains(5));
+		assertTrue(tree.contains(6));
+
+
+
+	}
+
+
 	
 	@Test
 	void testClear() {
