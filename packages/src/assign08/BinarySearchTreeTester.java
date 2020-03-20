@@ -3,6 +3,7 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test; 
 
@@ -22,6 +23,11 @@ class BinarySearchTreeTester {
 	
 	@Test
 	void testAddGreaterThanRoot() {
+		
+	}
+	
+	@Test
+	void testAddDuplicate() {
 		
 	}
 	
@@ -54,196 +60,196 @@ class BinarySearchTreeTester {
 	void testContainsExisting() {
 		
 	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
-//	
-//	@Test
-//	void testAddRoot() {
-//		
-//	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
+	
+	@Test
+	void testAddRoot() {
+		
+	}
 	
 	
 	
