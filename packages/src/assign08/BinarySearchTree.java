@@ -17,6 +17,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     /**The root node */
     BinaryNode<Type> rootNode;
 
+    BinaryNode<Type> fakeParent;
+
     /**The number of items in the BinarySearchTree */
     int size;
 
@@ -26,8 +28,13 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     public BinarySearchTree ()
     {
         //A null root node
-         this.rootNode = new BinaryNode<Type>(null);
-         this.rootNode.setParent(new BinaryNode<Type>(null,null,this.rootNode,null)); //Because everything traverses from the rootNode, a parent is inaccesible excepting removal
+         this.fakeParent = new BinaryNode<Type>(null);
+         //this.rootNode.setParent(new BinaryNode<Type>(null,null,this.rootNode,null));  //Because everything traverses from the rootNode, a parent is inaccesible excepting removal
+         
+        this.rootNode = new  BinaryNode<Type>(null,this.fakeParent);
+
+        this.fakeParent.setLeftChild(this.rootNode);
+        
          size = 0;
     }
 
