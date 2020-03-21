@@ -3,6 +3,7 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test; 
@@ -61,195 +62,195 @@ class BinarySearchTreeTester {
 		
 	}
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
-	@Test
-	void testAddRoot() {
+	// @Test
+	// void testAddRoot() {
 		
-	}
+	// }
 	
 	
 	
@@ -341,11 +342,43 @@ class BinarySearchTreeTester {
 		assertTrue(tree.contains(4));
 		assertTrue(tree.contains(5));
 		assertTrue(tree.contains(6));
+	}
 
+
+	@Test
+	void testContainsAll10() {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(30);
+		tree.add(23);
+		tree.add(34);
+		tree.add(72);
+		tree.add(63);
+		tree.add(24);
+		tree.add(69);
+		tree.add(420);
+		tree.add(42);
+		tree.add(46);
+
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		list.add(30);
+		list.add(23);
+		list.add(34);
+		list.add(72);
+		list.add(63);
+		list.add(24);
+		list.add(69);
+		list.add(239098);
+		list.add(42);
+		list.add(46);
+		
+		Collections.shuffle(list);
+		
+		assertFalse(tree.contains(239098));
 
 
 	}
-
 
 	
 	@Test
