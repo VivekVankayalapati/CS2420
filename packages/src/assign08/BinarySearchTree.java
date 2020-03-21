@@ -143,30 +143,6 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         
         return (node != null);
     }
-    
-    // private boolean contains (BinaryNode<Type> node, Type item)
-    // {
-    //     if (node == null)
-    //     {
-    //         return false;
-    //     }
-
-    //     int compare = item.compareTo(node.getData());
-
-    //     if (compare < 0)
-    // 	{
-    // 		return contains(node.getLeftChild(), item);
-    // 	}
-    	
-    // 	else if (compare > 0)
-    // 	{
-    // 		return contains(node.getRightChild(), item);
-    //     }
-    //     else
-    //     {
-    //         return true;
-    //     } 	
-    // }
 
     private BinaryNode<Type> contains (BinaryNode<Type> node, Type item)
     {
@@ -184,8 +160,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	}
  
     	return contains(node.getRightChild(), item);
-
     }
+
     @Override
     public boolean containsAll (Collection<? extends Type> items)
     {

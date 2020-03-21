@@ -62,7 +62,8 @@ public class BinarySearchTreeTimer
 
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
-            double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime));
+            double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime))/probSize;
+
             System.out.println(probSize + "  " + averageTime);
 
             
