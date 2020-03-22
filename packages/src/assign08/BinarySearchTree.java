@@ -143,49 +143,29 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         
         return (node != null);
     }
-    
-    // private boolean contains (BinaryNode<Type> node, Type item)
-    // {
-    //     if (node == null)
-    //     {
-    //         return false;
-    //     }
-
-    //     int compare = item.compareTo(node.getData());
-
-    //     if (compare < 0)
-    // 	{
-    // 		return contains(node.getLeftChild(), item);
-    // 	}
-    	
-    // 	else if (compare > 0)
-    // 	{
-    // 		return contains(node.getRightChild(), item);
-    //     }
-    //     else
-    //     {
-    //         return true;
-    //     } 	
-    // }
 
     private BinaryNode<Type> contains (BinaryNode<Type> node, Type item)
     {
-        int compare = item.compareTo(node.getData());
-        if (node == null || compare == 0)
+        
+        if (node == null)
         {
             return node;
         }
 
-        
+        int compare = item.compareTo(node.getData());
 
-        if (compare < 0)
+        if (compare == 0)
+        {
+            return node;
+        }
+        else if (compare < 0)
     	{
     		return contains(node.getLeftChild(), item);
     	}
  
     	return contains(node.getRightChild(), item);
-
     }
+
     @Override
     public boolean containsAll (Collection<? extends Type> items)
     {
@@ -262,38 +242,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	return false;
     }
 
-    /* A recursive function to insert a new key in BST */
-    private BinaryNode<Type> deleteRec(BinaryNode<Type> root, Type item) 
-    { 
-        /* Base Case: If the tree is empty */
-        if (root == null)  return root; 
-  
-        /* Otherwise, recur down the tree */
-        if (item.compareTo(root.getData()) < 0 ) 
-            root.setLeftChild(deleteRec(root.getLeftChild(), item)); 
-        else if (item.compareTo(root.getData()) > 0) 
-            root.setRightChild(deleteRec(root.getRightChild(), root.getData())); 
-  
-        // if key is same as root's key, then This is the node 
-        // to be deleted 
-        else
-        { 
-            // node with only one child or no child 
-            if (root.getLeftChild() == null) 
-                return root.getRightChild(); 
-            else if (root.getRightChild() == null) 
-                return root.getLeftChild();
-  
-            // node with two children: Get the inorder successor (smallest 
-            // in the right subtree) 
-            root.setData(root.getRightChild().getLeftmostNode().getData());
-  
-            // Delete the inorder successor 
-            root.setRightChild(deleteRec(root.getRightChild(), item)); 
-        } 
-  
-        return root; 
-    } 
+    
 
     private void delete(BinaryNode<Type> node)
     {
