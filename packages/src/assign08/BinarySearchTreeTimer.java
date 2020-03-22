@@ -71,6 +71,7 @@ public class BinarySearchTreeTimer
             
             
             //This is for timing insertion in random order
+            //My timing results are consistently jumpy, I don't understand why
 
             
             ArrayList<Integer> integerList = new ArrayList<Integer>();
@@ -80,31 +81,19 @@ public class BinarySearchTreeTimer
                 integerList.add(i);
             }
 
-            
-
-            
-
-
             long stopTime, midpointTime, startTime = System.nanoTime();
 
             // First, spin computing stuff until one second has gone by.
             // This allows this thread to stabilize
-            Collections.shuffle(integerList);
-
-
-            while (System.nanoTime() - startTime < 1000000000)
-            { // empty block
-            }
-
-            // Collect running times.
-            startTime = System.nanoTime();
+            
 
 
             
+            long totalTime = 0;
             for (int i = 0; i < timesToLoop; i++)
             {
                 BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
-
+                Collections.shuffle(integerList);
                 
 
                 for (Integer integer : integerList)
@@ -112,43 +101,40 @@ public class BinarySearchTreeTimer
                     binaryInteger.add(integer);
                 }
 
+                while (System.nanoTime() - startTime < 1000000000)
+                { // empty block
+                }
+
+                startTime = System.nanoTime();
+
                 for (int j = 0; j < probSize; j++)
                 {
                     binaryInteger.contains(j);
                 }
-            }
 
+                midpointTime = System.nanoTime();
 
-            
-
-
-            midpointTime = System.nanoTime();
-
-            // Capture the cost of running the loop and any other operations done
-            // above that are not the essential method call being timed.
-
-            for (int i = 0; i < timesToLoop; i++)
-            {
-                BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
-
-                for (Integer integer : integerList)
-                {
-                    binaryInteger.add(integer);
-                }
-
+                // Capture the cost of running the loop and any other operations done
+                // above that are not the essential method call being timed.
                 for (int j = 0; j < probSize; j++)
                 {
                     
                 }
+
+                stopTime = System.nanoTime();
+
+                totalTime += ((midpointTime - startTime) - (stopTime - midpointTime)); //Problem
             }
 
-            stopTime = System.nanoTime();
+            
+
+            // Capture the cost of running the loop and any other operations done
+            // above that are not the essential method call being timed.
 
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
             // Average it over the number of runs.
-            double totalTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
-            double averageTime = totalTime/probSize;
+            double averageTime = totalTime/(double)(timesToLoop*probSize); //Problem?
             System.out.println(probSize + "  " + averageTime);
             
         }
