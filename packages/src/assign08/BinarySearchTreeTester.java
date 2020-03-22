@@ -5,11 +5,33 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-import org.junit.jupiter.api.Test; 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 class BinarySearchTreeTester {
 
 	BinarySearchTree<Integer> tree;
+	BinarySearchTree<Integer> expectedTree;
+	BinarySearchTree<Integer> blankTree;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		tree = new BinarySearchTree<>();
+		
+		tree.add(10);
+		tree.add(7);
+		tree.add(12);
+		tree.add(4);
+		tree.add(20);
+		tree.add(6);
+		tree.add(15);
+		tree.add(8);
+		tree.add(13);
+		tree.add(5);
+		tree.add(24);
+		
+		blankTree = new BinarySearchTree<>();
+	}
 	
 	@Test
 	void testAddRoot() {
@@ -42,7 +64,12 @@ class BinarySearchTreeTester {
 	}
 	
 	@Test
-	void testAddAllFromNothing() {
+	void testAddAllNothing() {
+		
+	}
+	
+	@Test
+	void testAddAllDuplicates() {
 		
 	}
 	
@@ -52,380 +79,413 @@ class BinarySearchTreeTester {
 	}
 	
 	@Test
-	void testClearBlank() {
+	void testClearFromBlank() {
 		
 	}
 	
 	@Test
-	void testContainsExisting() {
+	void testContainsFromExisting() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsFromBlank() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsRoot() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllSample() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllWhole() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllFromBlank() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllNothing() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllRoot() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testContainsAllExtraneous() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testFirstFromExisting() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testFirstFromBlank() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testFirstRoot() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testLastFromExisting() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testLastFromBlank() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
+	void testLastRoot() {
 		
 	}
 	
 	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	@Test
-	void testAddRoot() {
-		
-	}
-	
-	
-	
-	@Test
-	void testAdd1() {
-		tree = new BinarySearchTree<>();
-
-		tree.add(8);
-		tree.add(4);
-		tree.add(12);
-		tree.add(2);
-		tree.add(6);
-		tree.add(10);
-		tree.add(11);
-		tree.add(13);
-		tree.add(15);
-		tree.add(14);
-		tree.add(1);
-		tree.add(3);
-		tree.add(5);
-		tree.add(7);
-		tree.add(9);
-		
-		
-
-		tree.add(16);
-
-		ArrayList<Integer> list = tree.toArrayList();
-		assertEquals(list,null);
-	}
-
-	@Test
-	void testAdd2() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(10);
-		tree.add(12);
-		tree.add(5);
-		tree.add(4);
-		tree.add(20);
-		tree.add(8);
-		tree.add(7);
-		tree.add(15);
-		tree.add(13);
-
-		tree.remove(13); //leaf
-		
-		tree.remove(12); //only child
-
-		tree.remove(5); //two children
-
-		assertEquals(null, tree);
-	}
-	
-	@Test
-	void testContains() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(10);
-		tree.add(12);
-		tree.add(5);
-		tree.add(4);
-		tree.add(20);
-		tree.add(8);
-		tree.add(7);
-		tree.add(15);
-		tree.add(13);
-		
-		assertFalse(tree.contains(39));
-	}
-
-	@Test
-	void testContainsSequential() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(1);
-		tree.add(2);
-		tree.add(3);
-		tree.add(4);
-		tree.add(5);
-		tree.add(6);
-		tree.add(7);
-		tree.add(8);
-		tree.add(9);
-		
-		assertTrue(tree.contains(1));
-		assertTrue(tree.contains(2));
-		assertTrue(tree.contains(3));
-		assertTrue(tree.contains(4));
-		assertTrue(tree.contains(5));
-		assertTrue(tree.contains(6));
-
-
-
-	}
-
-
-	
-	@Test
-	void testClear() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(10);
-		tree.add(12);
-		tree.add(5);
-		tree.add(4);
-		tree.add(20);
-		tree.add(8);
-		tree.add(7);
-		tree.add(15);
-		tree.add(13);
-		
-		tree.clear();
-		
-		assertEquals(new BinarySearchTree<Integer>(), tree);
+	void testRemoveFromBlank() {
+		assertFalse(blankTree.remove(1));
 	}
 	
 	@Test
 	void testRemoveRoot() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(10);
-		tree.add(12);
-		tree.add(5);
-		tree.add(4);
-		tree.add(20);
-		tree.add(8);
-		tree.add(7);
-		tree.add(15);
-		tree.add(13);
-		
 		tree.remove(10);
-		tree.remove(12);
 		
-		assertEquals(null, tree);
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
 	}
 	
 	@Test
-	void testRemoveAll() {
-		tree = new BinarySearchTree<>();
-		
-		tree.add(10);
-		tree.add(12);
-		tree.add(5);
-		tree.add(4);
-		tree.add(20);
-		tree.add(8);
-		tree.add(7);
-		tree.add(6);
-		tree.add(15);
-		tree.add(13);
-		
-		ArrayList<Integer> list = new ArrayList<>();
-		
-		list.add(10);
-		list.add(12);
-		list.add(5);
-		list.add(4);
-		list.add(20);
-		list.add(8);
-		list.add(7);
-		list.add(6);
-		list.add(15);
-		list.add(13);
-		
-		tree.remove(8);
-		tree.remove(7);
+	void testRemoveMultipleRoots() {
 		tree.remove(10);
-		tree.remove(5);
 		tree.remove(12);
-		tree.remove(20);
-		tree.remove(15);
 		tree.remove(13);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(7);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveLeftLeaf() {
+		tree.remove(13);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveRightLeaf() {
+		tree.remove(8);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveLeftBranchLeftChild() {
+		tree.remove(15);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveLeftBranchRightChild() {
 		tree.remove(4);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveRightBranchLeftChild() {
 		tree.remove(6);
 		
-		assertEquals(new BinarySearchTree<Integer>(), tree);
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveRightBranchRightChild() {
+		tree.remove(12);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveLeftParent() {
+		tree.remove(7);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveRightParent() {
+		tree.remove(20);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveAllSample() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		toRemove.add(4);
+		toRemove.add(8);
+		toRemove.add(20);
+		
+		tree.removeAll(toRemove);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveAllWhole() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		toRemove.add(10);
+		toRemove.add(7);
+		toRemove.add(12);
+		toRemove.add(4);
+		toRemove.add(20);
+		toRemove.add(6);
+		toRemove.add(15);
+		toRemove.add(8);
+		toRemove.add(13);
+		toRemove.add(5);
+		toRemove.add(24);
+		
+		tree.removeAll(toRemove);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testRemoveAllFromBlank() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		toRemove.add(1);
+		
+		assertFalse(blankTree.removeAll(toRemove));
+	}
+	
+	@Test
+	void testRemoveAllNothing() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		assertFalse(tree.removeAll(toRemove));
+	}
+	
+	@Test
+	void testRemoveAllRoot() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		toRemove.add(10);
+		
+		tree.removeAll(toRemove);
+		
+		expectedTree = new BinarySearchTree<>();
+		
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
+	
+	@Test
+	void testToArrayListFromExisting() {
+		ArrayList<Integer> expectedList = new ArrayList<>();
+		
+		expectedList.add(4);
+		expectedList.add(5);
+		expectedList.add(6);
+		expectedList.add(7);
+		expectedList.add(8);
+		expectedList.add(10);
+		expectedList.add(12);
+		expectedList.add(13);
+		expectedList.add(15);
+		expectedList.add(20);
+		expectedList.add(24);
+		
+		assertEquals(expectedList, tree.toArrayList());
+	}
+	
+	@Test
+	void testToArrayListFromBlank() {
+		ArrayList<Integer> blankList = new ArrayList<>();
+		
+		assertEquals(blankList, blankTree.toArrayList());
+	}
+	
+	@Test
+	void testToArrayListRoot() {
+		BinarySearchTree<Integer> root = new BinarySearchTree<>();
+		
+		root.add(1);
+		
+		ArrayList<Integer> expectedList = new ArrayList<>();
+		
+		expectedList.add(1);
+		
+		assertEquals(expectedList, root.toArrayList());
 	}
 }
