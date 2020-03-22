@@ -2,7 +2,6 @@ package assign08;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.TreeSet;
 
 
 public class BinarySearchTreeTimer
@@ -10,11 +9,12 @@ public class BinarySearchTreeTimer
     public static void main (String[] args)
     {
 
-        int timesToLoop = 100;
+        int timesToLoop = 10;
 
-        int incr = 1000;
-        for (int probSize = 1000; probSize <= 20000; probSize += incr)
-        {   
+        int incr = 100000;
+        for (int probSize = 100000; probSize <= 2000000; probSize += incr)
+        {  
+            /* 
 
             //-------------------------------------------------------------------------------------------------------------------//
 
@@ -22,8 +22,6 @@ public class BinarySearchTreeTimer
 
             
             BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
-
-            //TreeSet<Integer> treeSet = new TreeSet<Integer>();
 
             for (int i = 0; i < probSize; i++)
             {
@@ -67,11 +65,11 @@ public class BinarySearchTreeTimer
             System.out.println(probSize + "  " + averageTime);
 
             
-            
+            */
 
             //-------------------------------------------------------------------------------------------------------------------//
             
-            /*
+            
             //This is for timing insertion in random order
 
             
@@ -84,11 +82,15 @@ public class BinarySearchTreeTimer
 
             
 
+            
+
 
             long stopTime, midpointTime, startTime = System.nanoTime();
 
             // First, spin computing stuff until one second has gone by.
             // This allows this thread to stabilize
+            Collections.shuffle(integerList);
+
 
             while (System.nanoTime() - startTime < 1000000000)
             { // empty block
@@ -103,7 +105,7 @@ public class BinarySearchTreeTimer
             {
                 BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
 
-                Collections.shuffle(integerList);
+                
 
                 for (Integer integer : integerList)
                 {
@@ -129,8 +131,6 @@ public class BinarySearchTreeTimer
             {
                 BinarySearchTree<Integer> binaryInteger = new BinarySearchTree<Integer>();
 
-                Collections.shuffle(integerList);
-
                 for (Integer integer : integerList)
                 {
                     binaryInteger.add(integer);
@@ -147,9 +147,10 @@ public class BinarySearchTreeTimer
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
             // Average it over the number of runs.
-            double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
+            double totalTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
+            double averageTime = totalTime/probSize;
             System.out.println(probSize + "  " + averageTime);
-            */
+            
         }
         
         
