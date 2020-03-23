@@ -142,34 +142,44 @@ class BinarySearchTreeTester {
 	
 	@Test
 	void testClearFromExisting() {
+		tree.clear();
 		
+		assertEquals(blankTree.toArrayList(), tree.toArrayList());
 	}
 	
 	@Test
 	void testClearFromBlank() {
+		blankTree.clear();
 		
+		assertEquals(blankTree.toArrayList(), blankTree.toArrayList());
 	}
 	
 	@Test
 	void testContainsFromExisting() {
-		
+		assertTrue(tree.contains(24));
 	}
 	
 	@Test
 	void testContainsFromBlank() {
-		
+		assertFalse(blankTree.contains(1));
 	}
 	
 	@Test
 	void testContainsRoot() {
-		
+		assertTrue(rootTree.contains(1));
 	}
 	
 	@Test
 	void testContainsAllSample() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(4);
+		toCheck.add(8);
+		toCheck.add(20);
+		
+		assertTrue(tree.containsAll(toCheck));
 	}
-	///////////////////////////////STOP HERE
+
 	@Test
 	void testContainsAllWhole() {
 		ArrayList<Integer> toCheck = new ArrayList<>();
