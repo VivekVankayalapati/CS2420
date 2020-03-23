@@ -411,6 +411,31 @@ class BinarySearchTreeTester {
 	}
 	
 	@Test
+	void testRemoveAllUnbalanced() {
+		ArrayList<Integer> toRemove = new ArrayList<>();
+		
+		toRemove.add(5);
+		toRemove.add(4);
+		toRemove.add(3);
+		toRemove.add(2);
+		toRemove.add(1);
+		
+		BinarySearchTree<Integer> rightUnbalanced = new BinarySearchTree<>();
+		
+		rightUnbalanced.add(1);
+		rightUnbalanced.add(2);
+		rightUnbalanced.add(3);
+		rightUnbalanced.add(4);
+		rightUnbalanced.add(5);
+		
+		rightUnbalanced.removeAll(toRemove);
+		
+		BinarySearchTree<Integer> expectedTree = new BinarySearchTree<>();
+		
+		assertEquals(expectedTree.toArrayList(), rightUnbalanced.toArrayList());
+	}
+	
+	@Test
 	void testRemoveAllFromBlank() {
 		ArrayList<Integer> toRemove = new ArrayList<>();
 		
