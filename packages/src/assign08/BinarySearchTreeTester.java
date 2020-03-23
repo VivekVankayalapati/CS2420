@@ -3,6 +3,7 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
@@ -35,32 +36,88 @@ class BinarySearchTreeTester {
 	
 	@Test
 	void testAddRoot() {
-		
+		expectedTree = new BinarySearchTree<>();
+
+		expectedTree.add(40);
+
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+		resultTree.add(40);
+
+		assertEquals(resultTree, expectedTree.toArrayList());
 	}
 	
 	@Test
 	void testAddLessThanRoot() {
-		
+		expectedTree = new BinarySearchTree<>();
+
+		expectedTree.add(40);
+		expectedTree.add(39);
+
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+		resultTree.add(39);
+		resultTree.add(40);
+
+		assertEquals(resultTree, expectedTree.toArrayList());
 	}
 	
 	@Test
 	void testAddGreaterThanRoot() {
+		expectedTree = new BinarySearchTree<>();
+
+		expectedTree.add(40);
+		expectedTree.add(41);
 		
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+		resultTree.add(40);
+		resultTree.add(41);
+
+		assertEquals(resultTree, expectedTree.toArrayList());
 	}
 	
 	@Test
 	void testAddDuplicate() {
 		
+		assertFalse(tree.add(10));
+		assertFalse(tree.add(6));
+		assertFalse(tree.add(5));
+
 	}
 	
 	@Test
 	void testAddAllToExisting() {
+;
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
 		
+		resultTree.add(1);
+		resultTree.add(2);
+		resultTree.add(3);
+		resultTree.add(17);
+		resultTree.addAll(tree.toArrayList());	
+		Collections.sort(resultTree);
+
+		tree.add(1);
+		tree.add(2);
+		tree.add(3);
+		tree.add(17);
+
+
+		assertEquals(resultTree, tree.toArrayList());
 	}
 	
 	@Test
 	void testAddAllToBlank() {
-		
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+		resultTree.add(1);
+		resultTree.add(2);
+		resultTree.add(3);
+		resultTree.add(17);
+		resultTree.addAll(tree.toArrayList());
+
+		blankTree.addAll(resultTree);
+
+		assertEquals(blankTree.toArrayList(), blankTree 
+
+
 	}
 	
 	@Test

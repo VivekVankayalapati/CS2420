@@ -139,6 +139,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public boolean contains (Type item)
     {
+        if (this.rootNode.getData() == null)
+        {
+            return false;
+        }
+        
         BinaryNode<Type> node = contains(this.rootNode, item);
         
         return (node != null);
