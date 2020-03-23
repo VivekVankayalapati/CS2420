@@ -9,10 +9,10 @@ public class BinarySearchTreeTimer
     public static void main (String[] args)
     {
 
-        int timesToLoop = 10;
+        int timesToLoop = 50;
 
-        int incr = 100000;
-        for (int probSize = 100000; probSize <= 2000000; probSize += incr)
+        int incr = 1000;
+        for (int probSize = 1000; probSize <= 20000; probSize += incr)
         {  
             /* 
 
