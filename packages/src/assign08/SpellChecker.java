@@ -56,7 +56,7 @@ public class SpellChecker
 	 */
 	public void addToDictionary(String word) 
 	{
-		dictionary.add(word);
+		dictionary.add(word.toLowerCase());
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class SpellChecker
 	 */
 	public void removeFromDictionary(String word) 
 	{
-		dictionary.remove(word);
+		dictionary.remove(word.toLowerCase());
 	}
 
 	/**
