@@ -182,6 +182,29 @@ class BinarySearchTreeTester {
 		
 		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
 	}
+
+	@Test //You forgot to test removing elements not present in the BST
+	void testRemoveNonexistentElements() {
+	
+		expectedTree = new BinarySearchTree<>();
+		expectedTree.add(10);
+		expectedTree.add(7);
+		expectedTree.add(12);
+		expectedTree.add(4);
+		expectedTree.add(20);
+		expectedTree.add(6);
+		expectedTree.add(15);
+		expectedTree.add(8);
+		expectedTree.add(13);
+		expectedTree.add(5);
+		expectedTree.add(24);
+		
+		tree.remove(40);
+		tree.remove(30);
+		tree.remove(60);
+		
+		assertEquals(expectedTree.toArrayList(), tree.toArrayList());
+	}
 	
 	@Test
 	void testRemoveMultipleRoots() {

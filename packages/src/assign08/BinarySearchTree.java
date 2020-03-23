@@ -229,17 +229,9 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
         else
         {
-            findAndRemove(rootNode, item);
-            
-            //deleteRec(rootNode, item);
+             return findAndRemove(rootNode, item);
         }
     	
-    	if (size() == initialSize - 1)
-    	{
-    		return true;
-    	}
-    	
-    	return false;
     }
 
     
@@ -261,14 +253,20 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      * @param node
      * @param item
      */
-    private void findAndRemove (BinaryNode<Type> node, Type item) // Test comment
-    {    	
+    private boolean findAndRemove (BinaryNode<Type> node, Type item) // Test comment
+    {   
+        if (node == null)
+        {
+            return false;
+        }
+
     	if (item.compareTo(node.getData()) == 0)
     	{
     		if (node.getLeftChild() == null && node.getRightChild() == null)
     		{
                 delete(node);
                 size--;
+                return true;
     		}
     		else if (node.getRightChild() == null)
     		{
@@ -288,6 +286,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
                 }
                 
                 size--;
+                return true;
     		}
     		else if (node.getLeftChild() == null)
     		{
@@ -307,6 +306,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
                 }
                 
                 size--;
+                return true;
     		}
     		else
     		{
@@ -322,13 +322,15 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     	
     	else if (item.compareTo(node.getData()) < 0)
     	{
-    		findAndRemove(node.getLeftChild(), item);
+    		return findAndRemove(node.getLeftChild(), item);
     	}
     	
     	else if (item.compareTo(node.getData()) > 0)
     	{
-    		findAndRemove(node.getRightChild(), item);
-    	}
+    		return findAndRemove(node.getRightChild(), item);
+        }
+        
+        return false;
     }
 
     @Override
