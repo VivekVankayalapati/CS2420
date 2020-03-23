@@ -102,7 +102,7 @@ class BinarySearchTreeTester {
 	void testContainsAllSample() {
 		
 	}
-	
+	///////////////////////////////STOP HERE
 	@Test
 	void testContainsAllWhole() {
 		
@@ -198,7 +198,7 @@ class BinarySearchTreeTester {
 		expectedTree.add(13);
 		expectedTree.add(5);
 		expectedTree.add(24);
-		
+
 		tree.remove(40);
 		tree.remove(30);
 		tree.remove(60);
