@@ -3,11 +3,8 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Collections;
-=======
 import java.util.NoSuchElementException;
->>>>>>> 3cd08846bee53c5ee15600ed5ad12374bc52a45f
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
@@ -111,21 +108,21 @@ class BinarySearchTreeTester {
 		assertEquals(resultTree, tree.toArrayList());
 	}
 	
-	@Test
-	void testAddAllToBlank() {
-		ArrayList<Integer> resultTree = new ArrayList<Integer>();
-		resultTree.add(1);
-		resultTree.add(2);
-		resultTree.add(3);
-		resultTree.add(17);
-		resultTree.addAll(tree.toArrayList());
-
-		blankTree.addAll(resultTree);
-
-		assertEquals(blankTree.toArrayList(), blankTree 
-
-
-	}
+//	@Test
+//	void testAddAllToBlank() {
+//		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+//		resultTree.add(1);
+//		resultTree.add(2);
+//		resultTree.add(3);
+//		resultTree.add(17);
+//		resultTree.addAll(tree.toArrayList());
+//
+//		blankTree.addAll(resultTree);
+//
+//		assertEquals(blankTree.toArrayList(), blankTree); 
+//
+//
+//	}
 	
 	@Test
 	void testAddAllNothing() {
@@ -139,34 +136,44 @@ class BinarySearchTreeTester {
 	
 	@Test
 	void testClearFromExisting() {
+		tree.clear();
 		
+		assertEquals(blankTree.toArrayList(), tree.toArrayList());
 	}
 	
 	@Test
 	void testClearFromBlank() {
+		blankTree.clear();
 		
+		assertEquals(blankTree.toArrayList(), blankTree.toArrayList());
 	}
 	
 	@Test
 	void testContainsFromExisting() {
-		
+		assertTrue(tree.contains(24));
 	}
 	
 	@Test
 	void testContainsFromBlank() {
-		
+		assertFalse(blankTree.contains(1));
 	}
 	
 	@Test
 	void testContainsRoot() {
-		
+		assertTrue(rootTree.contains(1));
 	}
 	
 	@Test
 	void testContainsAllSample() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(4);
+		toCheck.add(8);
+		toCheck.add(20);
+		
+		assertTrue(tree.containsAll(toCheck));
 	}
-	///////////////////////////////STOP HERE
+
 	@Test
 	void testContainsAllWhole() {
 		ArrayList<Integer> toCheck = new ArrayList<>();
