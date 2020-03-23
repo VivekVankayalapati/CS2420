@@ -3,11 +3,8 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.Collections;
-=======
 import java.util.NoSuchElementException;
->>>>>>> 3cd08846bee53c5ee15600ed5ad12374bc52a45f
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
@@ -122,19 +119,25 @@ class BinarySearchTreeTester {
 
 		blankTree.addAll(resultTree);
 
-		assertEquals(blankTree.toArrayList(), blankTree 
+		Collections.sort(resultTree);
+		assertEquals(blankTree.toArrayList(),resultTree); 
 
 
 	}
 	
 	@Test
 	void testAddAllNothing() {
-		
+		ArrayList<Integer> resultTree = new ArrayList<Integer>();
+
+		assertFalse(tree.addAll(resultTree));
 	}
 	
 	@Test
 	void testAddAllDuplicates() {
-		
+		ArrayList<Integer> treeList = tree.toArrayList();
+		Collections.shuffle(treeList);
+		assertFalse(tree.addAll(treeList));
+
 	}
 	
 	@Test

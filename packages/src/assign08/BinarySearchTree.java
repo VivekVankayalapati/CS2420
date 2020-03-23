@@ -143,7 +143,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         {
             return false;
         }
-        
+
         BinaryNode<Type> node = contains(this.rootNode, item);
         
         return (node != null);
