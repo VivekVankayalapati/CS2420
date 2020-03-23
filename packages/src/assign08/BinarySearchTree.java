@@ -151,7 +151,6 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     private BinaryNode<Type> contains (BinaryNode<Type> node, Type item)
     {
-        
         if (node == null)
         {
             return node;

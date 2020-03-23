@@ -3,7 +3,11 @@ package assign08;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
+=======
+import java.util.NoSuchElementException;
+>>>>>>> 3cd08846bee53c5ee15600ed5ad12374bc52a45f
 import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
@@ -14,11 +18,11 @@ class BinarySearchTreeTester {
 	BinarySearchTree<Integer> tree;
 	BinarySearchTree<Integer> expectedTree;
 	BinarySearchTree<Integer> blankTree;
+	BinarySearchTree<Integer> rootTree;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		tree = new BinarySearchTree<>();
-		
 		tree.add(10);
 		tree.add(7);
 		tree.add(12);
@@ -32,6 +36,9 @@ class BinarySearchTreeTester {
 		tree.add(24);
 		
 		blankTree = new BinarySearchTree<>();
+		
+		rootTree = new BinarySearchTree<>();
+		rootTree.add(1);
 	}
 	
 	@Test
@@ -162,57 +169,89 @@ class BinarySearchTreeTester {
 	///////////////////////////////STOP HERE
 	@Test
 	void testContainsAllWhole() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(10);
+		toCheck.add(7);
+		toCheck.add(12);
+		toCheck.add(4);
+		toCheck.add(20);
+		toCheck.add(6);
+		toCheck.add(15);
+		toCheck.add(8);
+		toCheck.add(13);
+		toCheck.add(5);
+		toCheck.add(24);
+		
+		assertTrue(tree.containsAll(toCheck));
 	}
 	
 	@Test
 	void testContainsAllFromBlank() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(1);
+		
+		assertFalse(blankTree.containsAll(toCheck));
 	}
 	
 	@Test
 	void testContainsAllNothing() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		assertTrue(tree.containsAll(toCheck));
 	}
 	
 	@Test
 	void testContainsAllRoot() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(1);
+		
+		assertTrue(rootTree.containsAll(toCheck));
 	}
 	
 	@Test
 	void testContainsAllExtraneous() {
+		ArrayList<Integer> toCheck = new ArrayList<>();
 		
+		toCheck.add(42);
+		
+		assertFalse(tree.containsAll(toCheck));
 	}
 	
 	@Test
 	void testFirstFromExisting() {
-		
+		assertEquals(4, tree.first());
 	}
 	
 	@Test
 	void testFirstFromBlank() {
-		
+		assertThrows(NoSuchElementException.class, () -> {
+			blankTree.first();
+		});
 	}
 	
 	@Test
 	void testFirstRoot() {
-		
+		assertEquals(1, rootTree.first());
 	}
 	
 	@Test
 	void testLastFromExisting() {
-		
+		assertEquals(24, tree.last());
 	}
 	
 	@Test
 	void testLastFromBlank() {
-		
+		assertThrows(NoSuchElementException.class, () -> {
+			blankTree.last();
+		});
 	}
 	
 	@Test
 	void testLastRoot() {
-		
+		assertEquals(1, rootTree.last());
 	}
 	
 	@Test
