@@ -8,7 +8,7 @@ public class HashTable<K, V> implements Map<K, V>
 {
 	private ArrayList<LinkedList<MapEntry<K, V>>> table;
 	private int size;
-	// private int capacity?
+	private int capacity = 50;
 	
 	public HashTable()
 	{
@@ -37,8 +37,17 @@ public class HashTable<K, V> implements Map<K, V>
 
 	@Override
 	public List<MapEntry<K, V>> entries()
-	{
-		return this.table;
+	{	
+		ArrayList<MapEntry<K,V>> entries = new ArrayList<>();
+		for (LinkedList<MapEntry<K,V>> link : this.table)
+		{
+			for (MapEntry<K,V> mapEntry : link)
+			{
+				entries.add(mapEntry);
+			}
+		}
+
+		return entries;
 	}
 
 	@Override
@@ -61,21 +70,32 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V put(K key, V value)
 	{
+		int hashCode = key.hashCode() % this.capacity;
+		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode); 
 		if (containsKey(key) == false)
 		{
-			MapEntry<K, V> entry = new MapEntry<K, V>(key, value);
-			table.add(entry);
-			
+			head.add(new MapEntry<K,V>(key, value));
 			size++;
-			
-			return value;
-		}
-		else
-		{
-			// Get MapEntry, modify value
-			
 			return null;
 		}
+		
+	
+		// Check if key is already present 
+		//Interate through the LinkedList
+		for (MapEntry<K,V> item : head)
+		{ 	
+			if (item.getKey() == key) 
+			{ 	
+				V oldValue = item.getValue();
+				item.setValue(value);
+				size++;
+				return oldValue;
+			} 		 
+		}
+
+		return null;
+
+		
 	}
 
 	@Override
