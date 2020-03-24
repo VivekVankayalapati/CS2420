@@ -170,7 +170,21 @@ public class HashTable<K, V> implements Map<K, V>
 			}
 		}
 
+		if ((this.size)/(double)this.table.size() >= 1.0) 
+        {
+			resize();
+		}
 		return null;
+	}
+
+	private void resize()
+	{
+		// If load factor goes beyond threshold, then 
+        // double hash table size 
+		this.capacity *= 2;
+		for(int size= this.table.size(); size < capacity; size++)
+			this.table.add(new LinkedList<MapEntry<K, V>>());
+		//Do we rehash as well???
 	}
 
 	@Override
@@ -178,4 +192,6 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		return this.size;
 	}
+
+
 }
