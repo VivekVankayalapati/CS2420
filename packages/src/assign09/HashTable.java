@@ -41,7 +41,7 @@ public class HashTable<K, V> implements Map<K, V>
 		
 		for (MapEntry<K,V> item : head)
 		{
-			if (item.getKey() == key)
+			if (item.getKey().equals(key))
 			{
 				return true;
 			}
@@ -62,7 +62,7 @@ public class HashTable<K, V> implements Map<K, V>
 		
 		for (MapEntry<K,V> mapEntry : entries)
 		{
-			if (mapEntry.getValue() == value)
+			if (mapEntry.getValue().equals(value))
 			{
 				return true;
 			}
@@ -99,7 +99,7 @@ public class HashTable<K, V> implements Map<K, V>
 		
 		for (MapEntry<K,V> item : head)
 		{
-			if (item.getKey() == key)
+			if (item.getKey().equals(key))
 			{
 				return item.getValue();
 			}
@@ -136,7 +136,7 @@ public class HashTable<K, V> implements Map<K, V>
 		//Interate through the LinkedList
 		for (MapEntry<K,V> item : head)
 		{ 	
-			if (item.getKey() == key) 
+			if (item.getKey().equals(key)) 
 			{ 	
 				V oldValue = item.getValue();
 				item.setValue(value);
@@ -161,7 +161,7 @@ public class HashTable<K, V> implements Map<K, V>
 		
 		for (MapEntry<K,V> item : head)
 		{ 	
-			if (item.getKey() == key) 
+			if (item.getKey().equals(key)) 
 			{ 	
 				V oldValue = item.getValue();
 				head.remove(item);
