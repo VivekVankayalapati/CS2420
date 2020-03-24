@@ -24,14 +24,50 @@ public class HashTable<K, V> implements Map<K, V>
 	}
 
 	@Override
-	public boolean containsKey(K key) {
-		// TODO Auto-generated method stub
+	public boolean containsKey(K key)
+	{		
+		if (this.size == 0)
+		{
+			return false;
+		}
+		
+		int hashCode = key.hashCode() % this.capacity;
+		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		
+		if (head.size() == 0)
+		{
+			return false;
+		}
+		
+		for (MapEntry<K,V> item : head)
+		{
+			if (item.getKey() == key)
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
 	@Override
-	public boolean containsValue(V value) {
-		// TODO Auto-generated method stub
+	public boolean containsValue(V value)
+	{
+		if (this.size == 0)
+		{
+			return false;
+		}
+		
+		List<MapEntry<K, V>> entries = entries();
+		
+		for (MapEntry<K,V> mapEntry : entries)
+		{
+			if (mapEntry.getValue() == value)
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
@@ -53,6 +89,22 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V get(K key)
 	{
+		if (!containsKey(key))
+		{
+			return null;
+		}
+		
+		int hashCode = key.hashCode() % this.capacity;
+		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		
+		for (MapEntry<K,V> item : head)
+		{
+			if (item.getKey() == key)
+			{
+				return item.getValue();
+			}
+		}
+		
 		return null;
 	}
 
@@ -71,7 +123,8 @@ public class HashTable<K, V> implements Map<K, V>
 	public V put(K key, V value)
 	{
 		int hashCode = key.hashCode() % this.capacity;
-		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode); 
+		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		
 		if (containsKey(key) == false)
 		{
 			head.add(new MapEntry<K,V>(key, value));
@@ -79,7 +132,6 @@ public class HashTable<K, V> implements Map<K, V>
 			return null;
 		}
 		
-	
 		// Check if key is already present 
 		//Interate through the LinkedList
 		for (MapEntry<K,V> item : head)
@@ -90,17 +142,34 @@ public class HashTable<K, V> implements Map<K, V>
 				item.setValue(value);
 				size++;
 				return oldValue;
-			} 		 
+			}
 		}
 
 		return null;
-
-		
 	}
 
 	@Override
-	public V remove(K key) {
-		// TODO Auto-generated method stub
+	public V remove(K key)
+	{
+		int hashCode = key.hashCode() % this.capacity;
+		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		
+		if (containsKey(key) == false)
+		{
+			return null;
+		}
+		
+		for (MapEntry<K,V> item : head)
+		{ 	
+			if (item.getKey() == key) 
+			{ 	
+				V oldValue = item.getValue();
+				head.remove(item);
+				size--;
+				return oldValue;
+			}
+		}
+
 		return null;
 	}
 
