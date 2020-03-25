@@ -4,12 +4,21 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * A Generic HashTable
+ */
 public class HashTable<K, V> implements Map<K, V>
 {
+	/**The backing ArrayList. Contains LinkedLists of type MapEntry */
 	private ArrayList<LinkedList<MapEntry<K, V>>> table;
+	/**Total number of items in the HashMap */
 	private int size;
+	/**Size of the backing array. Doubled whenever lambda >= 10.0 */
 	private int capacity = 50;
 	
+	/**
+	 * Constructs a HashTable
+	 */
 	public HashTable()
 	{
 		table = new ArrayList<LinkedList<MapEntry<K, V>>>();
@@ -111,7 +120,7 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public boolean isEmpty()
 	{
-		if (size == 0)
+		if (this.size == 0)
 		{
 			return true;
 		}
@@ -145,6 +154,10 @@ public class HashTable<K, V> implements Map<K, V>
 			}
 		}
 
+		if ((this.size)/(double)this.table.size() >= 10.0) 
+        {
+			resize(); //Resizes and rehashes
+		}
 		return null;
 	}
 
@@ -170,13 +183,12 @@ public class HashTable<K, V> implements Map<K, V>
 			}
 		}
 
-		if ((this.size)/(double)this.table.size() >= 1.0) 
-        {
-			resize();
-		}
 		return null;
 	}
 
+	/**
+	 * Resizes and rehashes whenever lambda >= 10.0
+	 */
 	private void resize()
 	{
 		// If load factor goes beyond threshold, then 
@@ -184,7 +196,11 @@ public class HashTable<K, V> implements Map<K, V>
 		this.capacity *= 2;
 		for(int size= this.table.size(); size < capacity; size++)
 			this.table.add(new LinkedList<MapEntry<K, V>>());
-		//Do we rehash as well???
+		
+			
+		//Insert rehashing here
+
+
 	}
 
 	@Override
