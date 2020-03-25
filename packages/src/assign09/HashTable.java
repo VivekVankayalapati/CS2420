@@ -148,8 +148,7 @@ public class HashTable<K, V> implements Map<K, V>
 			if (item.getKey().equals(key)) 
 			{ 	
 				V oldValue = item.getValue();
-				item.setValue(value);
-				size++;
+				item.setValue(value); //No need to increment size
 				return oldValue;
 			}
 		}
