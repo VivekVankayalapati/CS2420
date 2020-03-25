@@ -21,6 +21,7 @@ public class BinaryNode<Type>
     /**The node representing the right child */
     private BinaryNode<Type> rightChild;
 
+    /**Whether the node is left of its partent or not */
     private boolean isLeft;
     
     /**

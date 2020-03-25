@@ -27,12 +27,14 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      */
     public BinarySearchTree ()
     {
-        //A null root node
+        //The node has parent for the purpose of access, analagous to a head for a doubly linked list
          this.fakeParent = new BinaryNode<Type>(null);
-         //this.rootNode.setParent(new BinaryNode<Type>(null,null,this.rootNode,null));  //Because everything traverses from the rootNode, a parent is inaccesible excepting removal
-         
-        this.rootNode = new  BinaryNode<Type>(null,this.fakeParent);
 
+         //A null root node
+         this.rootNode = new  BinaryNode<Type>(null,this.fakeParent);
+
+
+        //Parent left child is the rootnode
         this.fakeParent.setLeftChild(this.rootNode);
         
          size = 0;
@@ -65,9 +67,10 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      * @param item
      */
     private boolean insert (BinaryNode<Type> node, Type item)
-    {
+    {   //Left branch
     	if (item.compareTo(node.getData()) < 0)
-        {
+        {   
+            //Insertion
         	if (node.getLeftChild() == null)
         	{
         		BinaryNode<Type> newNode = new BinaryNode<>(item, node);
@@ -75,15 +78,19 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         		node.setLeftChild(newNode);
         		
         		return true;
-        	}
+            }
+            
         	else
-        	{
+        	{   
+                //Continue searching
         		return insert(node.getLeftChild(), item);
         	}
         }
 
+        //Right branch
         else if (item.compareTo(node.getData()) > 0)
-        {
+        {   
+            //Insertion
         	if (node.getRightChild() == null)
         	{
         		BinaryNode<Type> newNode = new BinaryNode<>(item, node);
@@ -93,11 +100,13 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
         		return true;
         	}
         	else
-        	{
+        	{   
+                //Continue search
         		return insert(node.getRightChild(), item);
         	}
         }
-    
+        
+        //Returns false is item is in BST
         return false;
     }
 
@@ -130,6 +139,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     @Override
     public void clear ()
     {
+        //Sets the data members to null
         this.rootNode.setData(null);
         this.rootNode.setRightChild(null);
         this.rootNode.setLeftChild(null);
@@ -151,6 +161,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
     private BinaryNode<Type> contains (BinaryNode<Type> node, Type item)
     {
+        //If node is null, then it doesn't contain
         if (node == null)
         {
             return node;
@@ -158,15 +169,17 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
         int compare = item.compareTo(node.getData());
 
+        //If found
         if (compare == 0)
         {
             return node;
         }
         else if (compare < 0)
     	{
+            //Continue searching
     		return contains(node.getLeftChild(), item);
     	}
- 
+        //Right tree traversal
     	return contains(node.getRightChild(), item);
     }
 
@@ -239,7 +252,10 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
     }
 
     
-
+    /**
+     * Deletes a leaf node
+     * @param node 
+     */
     private void delete(BinaryNode<Type> node)
     {
         if (node.getIsLeft())
@@ -259,19 +275,23 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
      */
     private boolean findAndRemove (BinaryNode<Type> node, Type item) // Test comment
     {   
+        //If the node is null, them removal can't occur
         if (node == null)
         {
             return false;
         }
 
+        //If the node is found
     	if (item.compareTo(node.getData()) == 0)
     	{
+            //Leaf
     		if (node.getLeftChild() == null && node.getRightChild() == null)
     		{
                 delete(node);
                 size--;
                 return true;
-    		}
+            }
+            //Only a left child
     		else if (node.getRightChild() == null)
     		{
                 Type leftChildData = node.getLeftChild().getData();
@@ -291,7 +311,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
                 
                 size--;
                 return true;
-    		}
+            }
+            //Only a right child
     		else if (node.getLeftChild() == null)
     		{
     			Type rightChildData = node.getRightChild().getData();
@@ -311,7 +332,8 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
                 
                 size--;
                 return true;
-    		}
+            }
+            //Two children
     		else
     		{
     			BinaryNode<Type> minNode = node.getRightChild().getLeftmostNode();
@@ -323,7 +345,7 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 				node.setData(minNodeData);
     		}
     	}
-    	
+    	//Continue searching
     	else if (item.compareTo(node.getData()) < 0)
     	{
     		return findAndRemove(node.getLeftChild(), item);
@@ -375,7 +397,11 @@ public class BinarySearchTree<Type extends Comparable<? super Type>> implements 
 
         return list;
     }
-
+    /**
+     * Performs an inorder traversal, adding node data values to an input array list
+     * @param node
+     * @param list
+     */
     private void listing (BinaryNode<Type> node,ArrayList<Type> list)
     {
         //do a recursive traversal of the subtree on the right
