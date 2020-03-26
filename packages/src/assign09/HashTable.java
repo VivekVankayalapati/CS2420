@@ -14,13 +14,15 @@ public class HashTable<K, V> implements Map<K, V>
 	/**Total number of items in the HashMap */
 	private int size;
 	/**Size of the backing array. Doubled whenever lambda >= 10.0 */
-	private int capacity = 50;
+	private int capacity;
 	
 	/**
 	 * Constructs a HashTable
 	 */
 	public HashTable()
 	{
+		this.size = 0;
+		this.capacity = 100;
 		table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		for(int i = 0; i < capacity; i++)
 		{
@@ -100,12 +102,14 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V get(K key)
 	{
-		if (!containsKey(key))
+		LinkedList<MapEntry<K, V>> head = head(key);
+
+		if (head.size() == 0)
 		{
 			return null;
 		}
 		
-		LinkedList<MapEntry<K, V>> head = head(key);
+		
 		
 		for (MapEntry<K,V> item : head)
 		{
@@ -129,7 +133,7 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
-		if (containsKey(key) == false)
+		if (head.size() == 0)
 		{
 			head.add(new MapEntry<K,V>(key, value));
 			size++;
@@ -143,10 +147,13 @@ public class HashTable<K, V> implements Map<K, V>
 			if (item.getKey().equals(key)) 
 			{ 	
 				V oldValue = item.getValue();
-				item.setValue(value); //No need to increment size
+				item.setValue(value);
 				return oldValue;
 			}
+
 		}
+
+		head.add(new MapEntry<K,V>(key, value));
 
 		if ((this.size)/(double)this.table.size() >= 10.0) 
         {
@@ -161,7 +168,7 @@ public class HashTable<K, V> implements Map<K, V>
 		
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
-		if (containsKey(key) == false)
+		if (head.size() == 0)
 		{
 			return null;
 		}
@@ -189,17 +196,26 @@ public class HashTable<K, V> implements Map<K, V>
 		//Sketch
 		//Overload put to take in MapEntry 
 		//Create a new table of the appropirate size O(table length)
+		clear();
+
+		this.capacity *= 2;
+		
+		List<MapEntry<K,V>> oldList = entries();
+
+		for(int i = 0; i < this.capacity; i++)
+		{
+			this.table.add(new LinkedList<MapEntry<K, V>>());
+		}
+
+		for (MapEntry<K,V> entry : oldList)
+		{
+			put(entry.getKey(),entry.getValue());
+		}
+
+
+		
 		//Using the list method, add the MapEntries using the overloaded put o(table length/2)
 		//Overall behavior of resize is O(N) amortized over the calls to put
-
-		// If load factor goes beyond threshold, then 
-        // double hash table size 
-		this.capacity *= 2;
-		for(int size= this.table.size(); size < capacity; size++)
-			this.table.add(new LinkedList<MapEntry<K, V>>());
-		
-			
-		//Insert rehashing here
 
 
 	}
