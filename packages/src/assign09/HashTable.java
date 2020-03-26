@@ -131,6 +131,11 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V put(K key, V value)
 	{
+		if ((this.size)/(double)this.table.size() >= 10.0) 
+        {
+			resize(); //Resizes and rehashes
+		}
+		
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
 		if (head.size() == 0)
@@ -154,11 +159,8 @@ public class HashTable<K, V> implements Map<K, V>
 		}
 
 		head.add(new MapEntry<K,V>(key, value));
+		size++;
 
-		if ((this.size)/(double)this.table.size() >= 10.0) 
-        {
-			resize(); //Resizes and rehashes
-		}
 		return null;
 	}
 
@@ -233,7 +235,7 @@ public class HashTable<K, V> implements Map<K, V>
 	 */
 	private LinkedList<MapEntry<K,V>> head(K key)
 	{
-		int hashCode = key.hashCode() % this.capacity;
+		int hashCode = Math.abs(key.hashCode()) % this.capacity;
 		return this.table.get(hashCode);
 	}
 
