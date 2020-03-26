@@ -25,8 +25,7 @@ public class HashTable<K, V> implements Map<K, V>
 		for(int i = 0; i < capacity; i++)
 		{
 			table.add(new LinkedList<MapEntry<K, V>>());
-		}
-		   
+		}	   
 	}
 	
 	@Override
@@ -186,6 +185,13 @@ public class HashTable<K, V> implements Map<K, V>
 	 */
 	private void resize()
 	{
+		
+		//Sketch
+		//Overload put to take in MapEntry 
+		//Create a new table of the appropirate size O(table length)
+		//Using the list method, add the MapEntries using the overloaded put o(table length/2)
+		//Overall behavior of resize is O(N) amortized over the calls to put
+
 		// If load factor goes beyond threshold, then 
         // double hash table size 
 		this.capacity *= 2;
