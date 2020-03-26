@@ -23,11 +23,15 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		for(int i = 0; i < capacity; i++)
-		   table.add(new LinkedList<MapEntry<K, V>>());
+		{
+			table.add(new LinkedList<MapEntry<K, V>>());
+		}
+		   
 	}
 	
 	@Override
-	public void clear() {
+	public void clear() 
+	{
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		this.size = 0;
 	}
@@ -35,13 +39,12 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public boolean containsKey(K key)
 	{		
-		if (this.size == 0)
+		if (isEmpty())
 		{
 			return false;
 		}
 		
-		int hashCode = key.hashCode() % this.capacity;
-		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		LinkedList<MapEntry<K, V>> head = head(key);
 		
 		if (head.size() == 0)
 		{
@@ -62,7 +65,7 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public boolean containsValue(V value)
 	{
-		if (this.size == 0)
+		if (isEmpty())
 		{
 			return false;
 		}
@@ -103,8 +106,7 @@ public class HashTable<K, V> implements Map<K, V>
 			return null;
 		}
 		
-		int hashCode = key.hashCode() % this.capacity;
-		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		LinkedList<MapEntry<K, V>> head = head(key);
 		
 		for (MapEntry<K,V> item : head)
 		{
@@ -120,19 +122,13 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public boolean isEmpty()
 	{
-		if (this.size == 0)
-		{
-			return true;
-		}
-		
-		return false;
+		return (this.size == 0);
 	}
 
 	@Override
 	public V put(K key, V value)
 	{
-		int hashCode = key.hashCode() % this.capacity;
-		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		LinkedList<MapEntry<K, V>> head = head(key);
 		
 		if (containsKey(key) == false)
 		{
@@ -163,8 +159,8 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V remove(K key)
 	{
-		int hashCode = key.hashCode() % this.capacity;
-		LinkedList<MapEntry<K, V>> head = this.table.get(hashCode);
+		
+		LinkedList<MapEntry<K, V>> head = head(key);
 		
 		if (containsKey(key) == false)
 		{
@@ -206,6 +202,17 @@ public class HashTable<K, V> implements Map<K, V>
 	public int size()
 	{
 		return this.size;
+	}
+
+	/**
+	 * Gets the LinkedList based on the key's hashcode
+	 * @param key
+	 * @return LinkedList
+	 */
+	private LinkedList<MapEntry<K,V>> head(K key)
+	{
+		int hashCode = key.hashCode() % this.capacity;
+		return this.table.get(hashCode);
 	}
 
 
