@@ -47,16 +47,15 @@ class HashTableTest {
 	void testPutBeyondCapacity() {
 		ArrayList<String> keyList = new ArrayList<>();
 		
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 1001; i++) {
 			keyList.add(Math.random() + "");
 		}
 		
-		keyList.add(Math.random() + "");
-		
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 999; i++) {
 			table.put(keyList.get(i), i);
 		}
 		
+		table.put(keyList.get(1000), 1000);
 		table.put(keyList.get(1001), 1001);
 		
 		for (int i = 0; i < 1001; i++) {
