@@ -204,13 +204,10 @@ public class HashTable<K, V> implements Map<K, V>
 		//Create a new table of the appropriate size O(table length)
 
 		this.capacity *= 2;
-
-		clear();
-
-		
 		
 		List<MapEntry<K,V>> oldList = entries();
 
+		clear();
 		
 		for (MapEntry<K,V> entry : oldList)
 		{

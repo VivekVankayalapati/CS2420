@@ -77,7 +77,6 @@ public class StudentBadHash {
 	 * Returns the character size of the uid. Pretty bad.
 	 */
 	public int hashCode() {
-
 		return Integer.toString(uid).length();
 	}
 }

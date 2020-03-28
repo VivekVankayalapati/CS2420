@@ -76,7 +76,13 @@ public class StudentMediumHash {
 	 * Returns the character size of the uid. Slightly better than StudentBadHash
 	 */
 	public int hashCode() {
-
-		return 0; //Needs completion
+		char[] uidDigits = Integer.toString(uid).toCharArray();
+		int uidSum = 0;
+		
+		for (char c : uidDigits) {
+			uidSum += Integer.parseInt(c + "");
+		}
+		
+		return uidSum;
 	}
 }
