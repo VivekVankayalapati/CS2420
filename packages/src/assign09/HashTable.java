@@ -23,7 +23,7 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		this.size = 0;
 		this.capacity = 100;
-		table = new ArrayList<LinkedList<MapEntry<K, V>>>();
+		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		for(int i = 0; i < capacity; i++)
 		{
 			table.add(new LinkedList<MapEntry<K, V>>());
@@ -34,6 +34,10 @@ public class HashTable<K, V> implements Map<K, V>
 	public void clear() 
 	{
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
+		for(int i = 0; i < capacity; i++)
+		{
+			table.add(new LinkedList<MapEntry<K, V>>());
+		}
 		this.size = 0;
 	}
 
@@ -198,17 +202,16 @@ public class HashTable<K, V> implements Map<K, V>
 		//Sketch
 		//Overload put to take in MapEntry 
 		//Create a new table of the appropriate size O(table length)
-		clear();
 
 		this.capacity *= 2;
+
+		clear();
+
+		
 		
 		List<MapEntry<K,V>> oldList = entries();
 
-		for(int i = 0; i < this.capacity; i++)
-		{
-			this.table.add(new LinkedList<MapEntry<K, V>>());
-		}
-
+		
 		for (MapEntry<K,V> entry : oldList)
 		{
 			put(entry.getKey(),entry.getValue());

@@ -73,11 +73,11 @@ public class StudentBadHash {
 		return firstName + " " + lastName + " (u" + formatter.format(uid) + ")";
 	}
 
+	/**
+	 * Returns the character size of the uid
+	 */
 	public int hashCode() {
-		// FILL IN and add method comment
-		Integer UID = uid;
 
-		
-		return UID.byteValue();
+		return Integer.toString(uid).length();
 	}
 }
