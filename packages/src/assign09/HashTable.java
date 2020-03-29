@@ -16,7 +16,11 @@ public class HashTable<K, V> implements Map<K, V>
 	/**Size of the backing array. Doubled whenever lambda >= 10.0 */
 	private int capacity;
 
+	/**Number of collisions as a result of put */
 	private int collisions;
+
+	/**The maximum allowed lambda */
+	private double lambda;
 	
 	/**
 	 * Constructs a HashTable
@@ -26,6 +30,7 @@ public class HashTable<K, V> implements Map<K, V>
 		this.size = 0;
 		this.capacity = 100;
 		this.collisions = 0;
+		this.lambda = 10.0;
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		for(int i = 0; i < capacity; i++)
 		{
@@ -159,7 +164,8 @@ public class HashTable<K, V> implements Map<K, V>
 				return oldValue;
 			}
 			else
-			{
+			{	
+				//Only used in timing, as per Dr. Parker's recommendation from Q @307
 				this.collisions++;
 			}
 		}
@@ -167,7 +173,7 @@ public class HashTable<K, V> implements Map<K, V>
 		head.add(new MapEntry<K,V>(key, value));
 		size++;
 		
-		if ((this.size)/(double)this.table.size() >= 10.0) 
+		if ((this.size)/(double)this.table.size() >= this.lambda) 
         {
 			resize(); //Resizes and rehashes
 		}
@@ -235,10 +241,32 @@ public class HashTable<K, V> implements Map<K, V>
 		return this.size;
 	}
 
-	public int collisions()
+	/**
+	 * Helper method for getting the number of collisions in our HashTable
+	 */
+	private int collisions()
 	{
 		return this.collisions;
 	}
+
+	/**
+	 * Sets the maximum lambda
+	 * @param lambda
+	 */
+	public void setLambda(double lambda)
+	{
+		this.lambda = lambda;
+	}
+
+	/**
+	 * Gets the maximum lambda
+	 * @return
+	 */
+	public double getLambda()
+	{
+		return this.lambda;
+	}
+
 
 	/**
 	 * Gets the LinkedList based on the key's hashcode
