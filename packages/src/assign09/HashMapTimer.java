@@ -2,21 +2,18 @@ package assign09;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.List;
 
 public class HashMapTimer
 {
     public static void main (String[] args)
     {
-        Random rng = new Random();
-
-        int timesToLoop = 10;
-
         int incr = 1000;
         for (int probSize = 1000; probSize <= 20000; probSize += incr)
         {
-//            HashTable<String, Integer> hash = new HashTable<>();
+            //Switch these depending on which Hash implementation you are timing 
+
+            // HashTable<String, Integer> hash = new HashTable<>();
             HashMap<String, Integer> hash = new HashMap<>();
             
             ArrayList<String> keyList = new ArrayList<>();
@@ -41,7 +38,24 @@ public class HashMapTimer
             for (int i = 0; i < probSize; i++)
             {
                 hash.put(keyList.get(i), i);
+
+                // hash.get(keyList.get(i));
+
+                // hash.remove(keyList.get(i));
+
+                // hash.containsKey(keyList.get(i));
+
+                // hash.containsValue(i);
+
+                // hash.isEmpty();
+
+                // hash.size();
             }
+
+            //hash.clear();
+
+            //List<MapEntry<K,V>> list = hash.entries();
+
 
             midpointTime = System.nanoTime();
 
@@ -49,7 +63,7 @@ public class HashMapTimer
             // above that are not the essential method call being timed.
             for (int i = 0; i < probSize; i++)
             {
-            	//
+            	
             }
 
             stopTime = System.nanoTime();
