@@ -45,7 +45,7 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public void clear() 
 	{	
-		//Emptys table via instantion
+		// Empties table via instantiation
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 
 		//Fills table to capacity with empty linked lists
@@ -184,7 +184,7 @@ public class HashTable<K, V> implements Map<K, V>
 		}
 		
 		// Check if key is already present 
-		//Interate through the LinkedList
+		// Iterate through the LinkedList
 		for (MapEntry<K,V> item : head)
 		{ 	
 			if (item.getKey().equals(key)) 
@@ -307,11 +307,9 @@ public class HashTable<K, V> implements Map<K, V>
 	 */
 	private LinkedList<MapEntry<K,V>> head(K key)
 	{
-		//Gets the absolute value of the hascode modded by the capacity
+		//Gets the absolute value of the hashcode modded by the capacity
 		int hashCode = Math.abs(key.hashCode()) % this.capacity;
 
 		return this.table.get(hashCode);
 	}
-
-
 }
