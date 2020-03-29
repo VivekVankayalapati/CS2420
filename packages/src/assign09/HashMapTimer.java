@@ -13,14 +13,19 @@ public class HashMapTimer
         {
             //Switch these depending on which Hash implementation you are timing 
 
-            // HashTable<String, Integer> hash = new HashTable<>();
-            HashMap<String, Integer> hash = new HashMap<>();
+            HashTable<String, Integer> hash = new HashTable<>();
+            //HashMap<String, Integer> hash = new HashMap<>();
             
             ArrayList<String> keyList = new ArrayList<>();
     		
     		//Puts random values between 0 to 1 (exclusive) as strings. Number of values inserted requires two doublings of our HashTable
     		for (int i = 0; i < probSize; i++) {
     			keyList.add(Math.random() + "");
+    		}
+    		
+    		// When testing get() and remove(), puts items for all keys in keyList.
+    		for (int i = 0; i < probSize; i++) {
+    			hash.put(keyList.get(i), i);
     		}
 
             long stopTime, midpointTime, startTime = System.nanoTime();
@@ -37,7 +42,7 @@ public class HashMapTimer
             startTime = System.nanoTime();
             for (int i = 0; i < probSize; i++)
             {
-                hash.put(keyList.get(i), i);
+                // hash.put(keyList.get(i), i);
 
                 // hash.get(keyList.get(i));
 
