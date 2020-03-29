@@ -244,7 +244,7 @@ public class HashTable<K, V> implements Map<K, V>
 	/**
 	 * Helper method for getting the number of collisions in our HashTable
 	 */
-	private int collisions()
+	public int collisions()
 	{
 		return this.collisions;
 	}
