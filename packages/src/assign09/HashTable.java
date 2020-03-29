@@ -15,6 +15,8 @@ public class HashTable<K, V> implements Map<K, V>
 	private int size;
 	/**Size of the backing array. Doubled whenever lambda >= 10.0 */
 	private int capacity;
+
+	private int collisions;
 	
 	/**
 	 * Constructs a HashTable
@@ -23,6 +25,7 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		this.size = 0;
 		this.capacity = 100;
+		this.collisions = 0;
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
 		for(int i = 0; i < capacity; i++)
 		{
@@ -39,6 +42,7 @@ public class HashTable<K, V> implements Map<K, V>
 			table.add(new LinkedList<MapEntry<K, V>>());
 		}
 		this.size = 0;
+		this.collisions=0;
 	}
 
 	@Override
@@ -154,7 +158,10 @@ public class HashTable<K, V> implements Map<K, V>
 				item.setValue(value);
 				return oldValue;
 			}
-
+			else
+			{
+				this.collisions++;
+			}
 		}
 
 		head.add(new MapEntry<K,V>(key, value));
@@ -226,6 +233,11 @@ public class HashTable<K, V> implements Map<K, V>
 	public int size()
 	{
 		return this.size;
+	}
+
+	public int collisions()
+	{
+		return this.collisions;
 	}
 
 	/**
