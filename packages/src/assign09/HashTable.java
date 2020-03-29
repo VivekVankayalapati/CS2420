@@ -11,12 +11,14 @@ public class HashTable<K, V> implements Map<K, V>
 {
 	/**The backing ArrayList. Contains LinkedLists of type MapEntry */
 	private ArrayList<LinkedList<MapEntry<K, V>>> table;
+
 	/**Total number of items in the HashMap */
 	private int size;
-	/**Size of the backing array. Doubled whenever lambda >= 10.0 */
+
+	/**Size of the backing array. Doubled whenever lambda is reached */
 	private int capacity;
 
-	/**Number of collisions as a result of put */
+	/**Number of collisions as a result of put method */
 	private int collisions;
 
 	/**The maximum allowed lambda */
@@ -32,6 +34,8 @@ public class HashTable<K, V> implements Map<K, V>
 		this.collisions = 0;
 		this.lambda = 10.0;
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
+
+		//Fills table to capacity with empty linked lists
 		for(int i = 0; i < capacity; i++)
 		{
 			table.add(new LinkedList<MapEntry<K, V>>());
@@ -40,69 +44,90 @@ public class HashTable<K, V> implements Map<K, V>
 	
 	@Override
 	public void clear() 
-	{
+	{	
+		//Emptys table via instantion
 		this.table = new ArrayList<LinkedList<MapEntry<K, V>>>();
+
+		//Fills table to capacity with empty linked lists
 		for(int i = 0; i < capacity; i++)
 		{
 			table.add(new LinkedList<MapEntry<K, V>>());
 		}
+
+		//Resets size and the number of collisions
 		this.size = 0;
 		this.collisions=0;
 	}
 
 	@Override
 	public boolean containsKey(K key)
-	{		
+	{	
+		//If the HashTable is empty	
 		if (isEmpty())
 		{
 			return false;
 		}
 		
+		//Gets the LinkedList corresponding the the absolute truncated hashCode from the key
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
+		//If the LinkedList is empty
 		if (head.size() == 0)
 		{
 			return false;
 		}
 		
+
+		//Searches the LinkedList
 		for (MapEntry<K,V> item : head)
-		{
+		{	
+			//If the key is found
 			if (item.getKey().equals(key))
 			{
 				return true;
 			}
 		}
 		
+		//If the key is not found
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(V value)
-	{
+	{	
+		//If the HashMap is empty
 		if (isEmpty())
 		{
 			return false;
 		}
 		
+		//Stores the MapEntries
 		List<MapEntry<K, V>> entries = entries();
 		
+		//For every MapEntry
 		for (MapEntry<K,V> mapEntry : entries)
-		{
+		{	
+			//If value is found
 			if (mapEntry.getValue().equals(value))
 			{
 				return true;
 			}
 		}
 		
+		//If value is not found
 		return false;
 	}
 
 	@Override
 	public List<MapEntry<K, V>> entries()
 	{	
+		//Stores MapEntries
 		ArrayList<MapEntry<K,V>> entries = new ArrayList<>();
+
+		//For every LinkedList int the HashTable
 		for (LinkedList<MapEntry<K,V>> link : this.table)
 		{
+			//For every MapEntry in the LinkedList
 			for (MapEntry<K,V> mapEntry : link)
 			{
 				entries.add(mapEntry);
@@ -115,23 +140,27 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V get(K key)
 	{
+		//Gets the LinkedList corresponding the the absolute truncated hashCode from the key
 		LinkedList<MapEntry<K, V>> head = head(key);
 
+		//If the LinkedList is empty
 		if (head.size() == 0)
 		{
 			return null;
 		}
 		
 		
-		
+		//For every MapEntry
 		for (MapEntry<K,V> item : head)
 		{
+			//If key is found
 			if (item.getKey().equals(key))
 			{
 				return item.getValue();
 			}
 		}
 		
+		//If key is not found
 		return null;
 	}
 
@@ -146,6 +175,7 @@ public class HashTable<K, V> implements Map<K, V>
 	{
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
+		//If LinkedList is empty, add a new MapEntry
 		if (head.size() == 0)
 		{
 			head.add(new MapEntry<K,V>(key, value));
@@ -170,9 +200,11 @@ public class HashTable<K, V> implements Map<K, V>
 			}
 		}
 
+		//If no duplicate keys are found
 		head.add(new MapEntry<K,V>(key, value));
 		size++;
 		
+		//Resize condition
 		if ((this.size)/(double)this.table.size() >= this.lambda) 
         {
 			resize(); //Resizes and rehashes
@@ -184,18 +216,22 @@ public class HashTable<K, V> implements Map<K, V>
 	@Override
 	public V remove(K key)
 	{
-		
+		//Gets the LinkedList corresponding the the absolute truncated hashCode from the key
 		LinkedList<MapEntry<K, V>> head = head(key);
 		
+
+		//If the LinkedList is empty
 		if (head.size() == 0)
 		{
 			return null;
 		}
 		
+		//Iterating through the LinkedList
 		for (MapEntry<K,V> item : head)
 		{ 	
 			if (item.getKey().equals(key)) 
 			{ 	
+				//Deletion
 				V oldValue = item.getValue();
 				head.remove(item);
 				size--;
@@ -203,6 +239,7 @@ public class HashTable<K, V> implements Map<K, V>
 			}
 		}
 
+		//If nothing found
 		return null;
 	}
 
@@ -211,28 +248,20 @@ public class HashTable<K, V> implements Map<K, V>
 	 */
 	private void resize()
 	{
-		
-		//Sketch
-		//Overload put to take in MapEntry 
-		//Create a new table of the appropriate size O(table length)
-
+		//Doubles capacity
 		this.capacity *= 2;
 		
+		//Gets old MapEntries
 		List<MapEntry<K,V>> oldList = entries();
 
+		//Resizes
 		clear();
 		
+		//Rehashes
 		for (MapEntry<K,V> entry : oldList)
 		{
 			put(entry.getKey(),entry.getValue());
 		}
-
-
-		
-		//Using the list method, add the MapEntries using the overloaded put o(table length/2)
-		//Overall behavior of resize is O(N) amortized over the calls to put
-
-
 	}
 
 	@Override
@@ -244,7 +273,7 @@ public class HashTable<K, V> implements Map<K, V>
 	/**
 	 * Helper method for getting the number of collisions in our HashTable
 	 */
-	private int collisions()
+	public int collisions()
 	{
 		return this.collisions;
 	}
@@ -275,7 +304,9 @@ public class HashTable<K, V> implements Map<K, V>
 	 */
 	private LinkedList<MapEntry<K,V>> head(K key)
 	{
+		//Gets the absolute value of the hascode modded by the capacity
 		int hashCode = Math.abs(key.hashCode()) % this.capacity;
+
 		return this.table.get(hashCode);
 	}
 
