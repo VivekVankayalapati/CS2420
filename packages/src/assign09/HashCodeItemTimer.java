@@ -13,7 +13,10 @@ public class HashCodeItemTimer
         ArrayList<Integer> uidList = new ArrayList<>();
         
         // Populates list of UID's.
-        for (int i = 0; i < timesToLoop; i++) {
+        for (int i = 0; i < timesToLoop; i++) 
+        {
+            //Vary this to test the size of the uids as an experimental variable
+
             //uidList.add(rng.nextInt(10000000)+1000000);
             //uidList.add(rng.nextInt(10000)+10000);
             uidList.add(rng.nextInt(1)+1);
@@ -31,6 +34,8 @@ public class HashCodeItemTimer
         }
 
         long stopTime, midpointTime, startTime = System.nanoTime();
+
+        //For StudentBadHash
 
         // First, spin computing stuff until one second has gone by.
         // This allows this thread to stabilize
@@ -63,8 +68,11 @@ public class HashCodeItemTimer
         // Compute the time, subtract the cost of running the loop
         // from the cost of running the loop and searching.
         // Average it over the number of runs.
+
         double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
         System.out.println(averageTime);
+
+        //For StudentMediumHash
 
         // Collect running times.
         startTime = System.nanoTime();
@@ -91,6 +99,8 @@ public class HashCodeItemTimer
         // Average it over the number of runs.
         averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) timesToLoop;
         System.out.println(averageTime);
+
+        //For StudentGoodHash
 
         // Collect running times.
         startTime = System.nanoTime();

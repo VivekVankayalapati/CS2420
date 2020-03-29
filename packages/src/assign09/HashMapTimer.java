@@ -1,8 +1,6 @@
 package assign09;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class HashMapTimer
 {
@@ -42,25 +40,14 @@ public class HashMapTimer
             startTime = System.nanoTime();
             for (int i = 0; i < probSize; i++)
             {
-                // hash.put(keyList.get(i), i);
+                //Vary this depending on which method you want to time
+
+                hash.put(keyList.get(i), i);
 
                 // hash.get(keyList.get(i));
 
                 // hash.remove(keyList.get(i));
-
-                // hash.containsKey(keyList.get(i));
-
-                // hash.containsValue(i);
-
-                // hash.isEmpty();
-
-                // hash.size();
             }
-
-            //hash.clear();
-
-            //List<MapEntry<K,V>> list = hash.entries();
-
 
             midpointTime = System.nanoTime();
 
@@ -75,7 +62,7 @@ public class HashMapTimer
 
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
-            // Average it over the number of runs.
+            // Average it over the problem size.
             double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) probSize;
             System.out.println(probSize + "  " + averageTime);
         }

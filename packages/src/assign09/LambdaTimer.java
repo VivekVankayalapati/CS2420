@@ -1,8 +1,6 @@
 package assign09;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class LambdaTimer
 {
@@ -56,7 +54,7 @@ public class LambdaTimer
 
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
-            // Average it over the number of runs.
+            // Average it over the problem size.
             double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) probSize;
             System.out.println(probSize + "  " + averageTime);
         }

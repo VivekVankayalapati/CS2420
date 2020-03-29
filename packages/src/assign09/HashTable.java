@@ -271,7 +271,8 @@ public class HashTable<K, V> implements Map<K, V>
 	}
 
 	/**
-	 * Helper method for getting the number of collisions in our HashTable
+	 * Helper method for getting the number of collisions in our HashTable.
+	 * Only used in timing, as per Dr. Parker's recommendation from Q @307
 	 */
 	public int collisions()
 	{
@@ -279,7 +280,8 @@ public class HashTable<K, V> implements Map<K, V>
 	}
 
 	/**
-	 * Sets the maximum lambda
+	 * Sets the maximum lambda 
+	 * Used only in timing
 	 * @param lambda
 	 */
 	public void setLambda(double lambda)
@@ -289,6 +291,7 @@ public class HashTable<K, V> implements Map<K, V>
 
 	/**
 	 * Gets the maximum lambda
+	 * Used only in timing
 	 * @return
 	 */
 	public double getLambda()

@@ -73,7 +73,7 @@ public class StudentGoodHash {
 	}
 
 	/**
-	 * Returns the character size of the uid. The best one
+	 * Returns hashCode of the toString return. The best one
 	 */
 	public int hashCode() {
 		return toString().hashCode();

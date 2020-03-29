@@ -1,8 +1,6 @@
 package assign09;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 
 public class HashCodeTimer
@@ -17,16 +15,23 @@ public class HashCodeTimer
         	ArrayList<Integer> uidList = new ArrayList<>();
     		
     		// Populates list of UID's.
-    		for (int i = 0; i < probSize; i++) {
+            for (int i = 0; i < probSize; i++) 
+            {
     			uidList.add(rng.nextInt(10000000));
     		}
-    		
+            
+            
+            //Vary this based on which HashCode you want to time
+
 //    		ArrayList<StudentBadHash> hashArray = new ArrayList<>();
 //    		ArrayList<StudentMediumHash> hashArray = new ArrayList<>();
     		ArrayList<StudentGoodHash> hashArray = new ArrayList<>();
     		
     		// Populates respective arrays.
-    		for (int i = 0; i < probSize; i++) {
+            for (int i = 0; i < probSize; i++) 
+            {
+                //Vary this based on which HashCode you want to time
+
 //    			hashArray.add(new StudentBadHash(uidList.get(i), "John", "Doe"));
 //    			hashArray.add(new StudentMediumHash(uidList.get(i), "John", "Doe"));
     			hashArray.add(new StudentGoodHash(uidList.get(i), "John", "Doe"));
@@ -62,7 +67,7 @@ public class HashCodeTimer
 
             // Compute the time, subtract the cost of running the loop
             // from the cost of running the loop and searching.
-            // Average it over the number of runs.
+            // Average it over the problem size.
             double averageTime = ((midpointTime - startTime) - (stopTime - midpointTime)) / (double) probSize;
             System.out.println(probSize + "  " + averageTime);
         }
